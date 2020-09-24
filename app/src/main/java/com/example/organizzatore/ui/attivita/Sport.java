@@ -78,13 +78,12 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void insertItem(String nome, int position) {
-        int position_line = position + 1;
 
         /*if (position > mAdapter.getItemCount() || position == -1) {
             Toast.makeText(getApplicationContext(), "Posizione non valida", Toast.LENGTH_LONG).show();
             return;
         }*/
-        mExampleList.add(new ExampleItem(nome, "This is Line " + position_line));
+        mExampleList.add(new ExampleItem(nome, "This is Line " + position));
         mAdapter.notifyItemInserted(position);
     }
 

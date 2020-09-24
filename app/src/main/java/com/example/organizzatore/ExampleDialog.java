@@ -37,7 +37,7 @@ public class ExampleDialog extends DialogFragment {
     private Button negativeButton;
     //private EditText Position;
     private ExampleDialogListener listener;
-    public static int position=-1;
+    public static int position=0;
 
     public static final String TAG = "ExampleDialog";
 
