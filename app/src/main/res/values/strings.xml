@@ -17,11 +17,14 @@
     <string name="reset">Reset</string>
     <string name="start">Start</string>
     <string name="pause">Pause</string>
-    <string name="nome">nome</string>
+    <string name="nome">Nome</string>
     <string name="zero">00</string>
     <string name="rep">ripetizioni</string>
     <string name="prossima_attivita">passa alla prossima attività</string>
     <string name="organizza">Organizza</string>
     <string name="studio">studio</string>
     <string name="ripetizioni">ripetizioni</string>
+    <string name="posizione">Posizione</string>
+    <string name="Organizza">Organizzati!</string>
+    <string name="by_b_amp_r"><![CDATA[By B&R]]></string>
 </resources>
