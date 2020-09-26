@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="25dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Che attività vuoi aggiungere?"
+        android:textSize="18dp"
+        android:textColor="@android:color/holo_red_dark"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiCrea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nome"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Chronometer
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/positivebutton"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:text="Crea"
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <Button
+                android:id="@+id/negativebutton"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="0dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Cancella"
+                android:textColor="@android:color/holo_red_dark" />
+        </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

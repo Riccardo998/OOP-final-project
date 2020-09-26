@@ -50,20 +50,13 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-            cardFreeTime.setOnClickListener(new View.OnClickListener() {
+              cardFreeTime.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v)
                 {
                     startActivity(new Intent(getActivity(), FreeTime.class));
                 }
             });
-
-
-
-
-
-
-
-        return root;
+              return root;
     }
 
 }

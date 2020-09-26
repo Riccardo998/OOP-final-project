@@ -1,30 +1,25 @@
-package com.example.organizzatore.ui.attivita;
+package com.example.organizzatore.ui.ThingsToDo;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.organizzatore.R;
-import com.example.organizzatore.ui.ThingsToDo.TLavoro;
-import com.example.organizzatore.ui.ThingsToDo.TSport;
-import com.example.organizzatore.ui.example.ExampleAdapter;
-import com.example.organizzatore.ui.example.ExampleDialog;
-import com.example.organizzatore.ui.example.ExampleItem;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.organizzatore.ui.example.ExampleAdapterOthers;
+import com.example.organizzatore.ui.example.ExampleDialogOthers;
+import com.example.organizzatore.ui.example.ExampleItemOthers;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
-public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDialogListener{
-
-    public ExampleAdapter mAdapter;
-    public ArrayList<ExampleItem> mExampleList;
+public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.ExampleDialogListener{
+    public ExampleAdapterOthers mAdapter;
+    public ArrayList<ExampleItemOthers> mExampleList;
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
@@ -33,7 +28,7 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lavoro);
+        setContentView(R.layout.t_freetime);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,26 +41,27 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
         opendialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExampleDialog exampleDialog = new ExampleDialog();
-                exampleDialog.show(getFragmentManager(),"ExampleDialog");
-                ExampleDialog.position++;
+                ExampleDialogOthers exampleDialogOthers = new ExampleDialogOthers();
+                exampleDialogOthers.show(getFragmentManager(),"ExampleDialogOthers");
+                ExampleDialogOthers.position++;
             }
         });
-    }
 
+    }
 
     public void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ExampleAdapter(mExampleList);
+        mAdapter = new ExampleAdapterOthers(mExampleList);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
 
-            //se si clicca l'item si attiva usa funzione
+        mAdapter.setOnItemClickListener(new ExampleAdapterOthers.OnItemClickListener() {
+            //se si clicca l'item si attiva la data activity
             public void onItemClick(int position){
-                startActivity(new Intent(getApplicationContext(), TLavoro.class));
+                startActivity(new Intent(getApplicationContext(), PreFreeTime.class));
             }
             @Override
             public void onDeleteClick(int position) {
@@ -73,8 +69,6 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
             }
         });
     }
-
-
 
     public void removeItem(int position) {
         mExampleList.remove(position);
@@ -84,9 +78,8 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void insertItem(String nome, int position) {
 
-        mExampleList.add(new ExampleItem(nome, "This is Line " + position));
+        mExampleList.add(new ExampleItemOthers(nome, "This is Line " + position));
         mAdapter.notifyItemInserted(position);
-
     }
 
 }

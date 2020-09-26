@@ -1,9 +1,6 @@
-package com.example.organizzatore;
+package com.example.organizzatore.ui.example;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,22 +9,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialog;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.organizzatore.ui.attivita.Sport;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
+import com.example.organizzatore.R;
 
 public class ExampleDialog extends DialogFragment {
 
@@ -35,7 +24,6 @@ public class ExampleDialog extends DialogFragment {
     private EditText textInputNome;
     private Button positiveButton;
     private Button negativeButton;
-    //private EditText Position;
     private ExampleDialogListener listener;
     public static int position=0;
 
@@ -49,7 +37,6 @@ public class ExampleDialog extends DialogFragment {
 
         //attributi per il nome da inserire e la scelta del programma (studio o allenamento)
         textInputNome = view.findViewById(R.id.tiCrea);
-        //Position = view.findViewById(R.id.position);
         positiveButton = view.findViewById(R.id.positivebutton);
         negativeButton = view.findViewById(R.id.negativebutton);
 
@@ -67,9 +54,9 @@ public class ExampleDialog extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String nome = textInputNome.getText().toString().trim();
-                //String position = Position.getText().toString().trim();
-                //positiveButton.setEnabled(!nome.isEmpty() && !position.isEmpty());
                 positiveButton.setEnabled(!nome.isEmpty());
+
+
             }
 
             @Override
@@ -77,25 +64,6 @@ public class ExampleDialog extends DialogFragment {
             }
         });
 
-        /*Position.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String nome = textInputNome.getText().toString().trim();
-                String position = Position.getText().toString().trim();
-                positiveButton.setEnabled(!nome.isEmpty() && !position.isEmpty());
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });*/
 
 
             negativeButton.setOnClickListener(new View.OnClickListener() {
@@ -113,8 +81,6 @@ public class ExampleDialog extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     String nome = textInputNome.getText().toString().trim();
-                    //int position = Integer.parseInt(Position.getText().toString());
-                    //listener.insertItem(nome, position - 1);
                     listener.insertItem(nome, position);
                     getDialog().dismiss();
                 }
@@ -122,6 +88,7 @@ public class ExampleDialog extends DialogFragment {
 
             return view;
         }
+
 
         @Override
         public void onAttach (Context context){
