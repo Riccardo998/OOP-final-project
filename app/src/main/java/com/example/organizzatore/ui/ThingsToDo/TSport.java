@@ -15,24 +15,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.organizzatore.R;
 import com.example.organizzatore.ui.example.ExampleAdapterSport;
 import com.example.organizzatore.ui.example.ExampleDialogSport;
+import com.example.organizzatore.ui.example.ExampleItemOthers;
 import com.example.organizzatore.ui.example.ExampleItemSport;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class TSport extends AppCompatActivity implements ExampleDialogSport.ExampleDialogListener{
-    public ExampleAdapterSport
-            mAdapter;
+    public ExampleAdapterSport mAdapter;
     public ArrayList<ExampleItemSport> mExampleList;
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
+    public long tempo2;
+    public int inputrep;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.t_sport); //TODO implement layout all_pre per tutti, metto il + ... devo capire se è per tutti e negli altri metto rep =1  o solo per sport
+        setContentView(R.layout.t_sport);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -65,7 +67,12 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         mAdapter.setOnItemClickListener(new ExampleAdapterSport.OnItemClickListener() {
             //se si clicca l'item si attiva usa funzione
             public void onItemClick(int position){
-                startActivity(new Intent(getApplicationContext(), PreSport.class)); //todo linkare qui nel .class prima del . la classe corretta : il preimpostato
+                Intent intent= new Intent(getApplicationContext(), PreSport.class);
+                Bundle bundle=new Bundle();
+                bundle.putLong("tempo", tempo2);
+                bundle.putInt("rep",inputrep);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
             @Override
             public void onDeleteClick(int position) {
@@ -80,10 +87,18 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void insertItem(String nome, int position) {
-
-        mExampleList.add(new ExampleItemSport(nome, "This is Line " + position));
+    public void insertItem(String nome, int position, String rep, String hour, String minute, String second ) {
+        long ore=Long.parseLong(hour);
+        long minuti=Long.parseLong(minute);
+        long secondi=Long.parseLong(second);
+        long time=ore*60+minuti;
+        int ripetizioni=Integer.parseInt(rep);
+        mExampleList.add(new ExampleItemSport(nome, "Durata attività: " + time+ " minuti"));
         mAdapter.notifyItemInserted(position);
+        long input=(ore*3600+minuti*60+secondi)*1000;
+        tempo2=input;
+        inputrep=ripetizioni;
+
     }
 
 }

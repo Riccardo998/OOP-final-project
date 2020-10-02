@@ -23,9 +23,11 @@
     <string name="prossima_attivita">passa alla prossima attività</string>
     <string name="organizza">Organizza</string>
     <string name="studio">studio</string>
-    <string name="ripetizioni">ripetizioni</string>
+    <string name="ripetizioni">Ripetizioni</string>
     <string name="posizione">Posizione</string>
     <string name="Organizza">Organizzati!</string>
     <string name="by_b_amp_r"><![CDATA[By B&R]]></string>
     <string name="inizio">Inizio</string>
+    <string name="tempoattivita">Durata attività (in minuti)</string>
+    <string name="tempoinizio">00:00</string>
 </resources>

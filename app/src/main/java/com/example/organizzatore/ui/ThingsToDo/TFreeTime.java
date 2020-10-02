@@ -17,12 +17,13 @@ import com.example.organizzatore.ui.example.ExampleItemOthers;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
-public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.ExampleDialogListener{
+public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.ExampleDialogListener {
     public ExampleAdapterOthers mAdapter;
     public ArrayList<ExampleItemOthers> mExampleList;
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
+    public long tempo3;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -61,7 +62,11 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         mAdapter.setOnItemClickListener(new ExampleAdapterOthers.OnItemClickListener() {
             //se si clicca l'item si attiva la data activity
             public void onItemClick(int position){
-                startActivity(new Intent(getApplicationContext(), PreFreeTime.class));
+                Intent intent= new Intent (getApplicationContext(), PreFreeTime.class);
+                Bundle bundle=new Bundle();
+                bundle.putLong("tempo", tempo3);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
             @Override
             public void onDeleteClick(int position) {
@@ -76,10 +81,15 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void insertItem(String nome, int position) {
-
-        mExampleList.add(new ExampleItemOthers(nome, "This is Line " + position));
+    public void insertItem (String nome, int position, String hour, String minute, String second){
+        long ore=Long.parseLong(hour);
+        long minuti=Long.parseLong(minute);
+        long secondi=Long.parseLong(second);
+        long time=ore*60+minuti;
+        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + time+ " minuti"));
         mAdapter.notifyItemInserted(position);
+        long input=(ore*3600+minuti*60+secondi)*1000;
+        tempo3=input;
     }
 
 }

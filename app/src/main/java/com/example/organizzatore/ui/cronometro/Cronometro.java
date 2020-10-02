@@ -17,12 +17,10 @@ import com.example.organizzatore.R;
 public class Cronometro extends Fragment {
 
 
-    Button
-            btn_start;
+    Button btn_start;
     Button btn_pause;
     Button btn_reset;
-    Chronometer
-            xChronometer;
+    Chronometer xChronometer;
     long pauseOffset;
     boolean running;
 
