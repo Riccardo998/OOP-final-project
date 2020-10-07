@@ -5,12 +5,15 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.organizzatore.R;
+import com.example.organizzatore.ui.example.ExampleItemSport;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class PreSport extends AppCompatActivity {
@@ -20,12 +23,16 @@ public class PreSport extends AppCompatActivity {
     private Button btn_reset;
     private Button btn_next;
     private TextView chronometer;
-    private TextView rep;
+    private TextView attivita;
 
     private CountDownTimer mCountDownTimer;
     private long mStartTimeInMillis;
     private long mTimeLeftInMillis;
     private long mEndTime;
+    private int i=0;
+
+    private ArrayList<ExampleItemSport> arrayList;
+    private int n;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +43,22 @@ public class PreSport extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Bundle bundle=getIntent().getExtras();
-        long data= bundle.getLong("tempo");
-        int ripetizioni=bundle.getInt("rep");
+        arrayList=(ArrayList<ExampleItemSport>) getIntent().getSerializableExtra("list");
+
+        final long data = arrayList.get(i).getTime();
+        final String title= arrayList.get(i).getText1();
+        final int rep= arrayList.get(i).getRep();
+        n = arrayList.size();
 
         chronometer=findViewById(R.id.chronometer);
-        rep=findViewById(R.id.rep);
-
-        rep.setText(""+ripetizioni);
-
         btn_pause=findViewById(R.id.btn_pause);
         btn_reset=findViewById(R.id.btn_reset);
         btn_start=findViewById(R.id.btn_start);
         btn_next=findViewById(R.id.btn_next);
+        btn_next=findViewById(R.id.btn_next);
+        attivita=findViewById(R.id.attività);
 
-        setTime(data);
+        setTime(data,title,rep);
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +78,13 @@ public class PreSport extends AppCompatActivity {
                 resetTimer();
             }
         });
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextTimer();
+            }
+        });
+
     }
 
     private void startTimer() {
@@ -89,6 +104,27 @@ public class PreSport extends AppCompatActivity {
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
+    }
+
+    private void nextTimer(){
+        if(i == n - 1){
+            mCountDownTimer.cancel();
+            mCountDownTimer.onFinish();
+            btn_next.setEnabled(false);
+            btn_reset.setEnabled(false);
+            btn_pause.setEnabled(false);
+            Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
+
+        }else {
+            mCountDownTimer.cancel();
+            mCountDownTimer.onFinish();
+            i++;
+            String title = arrayList.get(i).getText1();
+            long time = arrayList.get(i).getTime();
+            int rep= arrayList.get(i).getRep();
+            setTime(time,title,rep);
+            startTimer();
+        }
     }
 
     private void resetTimer() {
@@ -112,7 +148,11 @@ public class PreSport extends AppCompatActivity {
         chronometer.setText(timeLeftFormatted);
     }
 
-    public void setTime(long milliseconds) {
+    public void setTime(long milliseconds, String title, int ripetizioni) {
+        TextView rep=findViewById(R.id.rep);
+        rep.setText(""+ ripetizioni);
+        TextView textView=findViewById(R.id.cosedafare);
+        textView.setText(title);
         mStartTimeInMillis = milliseconds;
         mTimeLeftInMillis = mStartTimeInMillis;
         updateCountDownText();

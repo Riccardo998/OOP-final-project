@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,7 +25,7 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
-    public long tempo3;
+    public Button inizio;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -38,6 +40,8 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         mExampleList = new ArrayList<>();
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
+        inizio=findViewById(R.id.buttonstart);
+
         //bottone +
         opendialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +49,15 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
                 ExampleDialogOthers exampleDialogOthers = new ExampleDialogOthers();
                 exampleDialogOthers.show(getFragmentManager(),"ExampleDialogOthers");
                 ExampleDialogOthers.position++;
+            }
+        });
+
+        inizio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(TFreeTime.this, PreFreeTime.class);
+                intent.putExtra("list", mExampleList);
+                startActivity(intent);
             }
         });
 
@@ -62,11 +75,7 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         mAdapter.setOnItemClickListener(new ExampleAdapterOthers.OnItemClickListener() {
             //se si clicca l'item si attiva la data activity
             public void onItemClick(int position){
-                Intent intent= new Intent (getApplicationContext(), PreFreeTime.class);
-                Bundle bundle=new Bundle();
-                bundle.putLong("tempo", tempo3);
-                intent.putExtras(bundle);
-                startActivity(intent);
+
             }
             @Override
             public void onDeleteClick(int position) {
@@ -86,10 +95,9 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         long minuti=Long.parseLong(minute);
         long secondi=Long.parseLong(second);
         long time=ore*60+minuti;
-        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + time+ " minuti"));
-        mAdapter.notifyItemInserted(position);
         long input=(ore*3600+minuti*60+secondi)*1000;
-        tempo3=input;
+        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + time+ " minuti",input));
+        mAdapter.notifyItemInserted(position);
     }
 
 }

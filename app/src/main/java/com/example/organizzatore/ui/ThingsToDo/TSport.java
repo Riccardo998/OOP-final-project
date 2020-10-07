@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
@@ -27,8 +28,7 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
-    public long tempo2;
-    public int inputrep;
+    public Button inizio;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -43,6 +43,8 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         mExampleList = new ArrayList<>();
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
+        inizio=findViewById(R.id.buttonstart);
+
         //bottone +
         opendialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,15 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
                 ExampleDialogSport exampleDialogSport = new ExampleDialogSport();
                 exampleDialogSport.show(getFragmentManager(),"ExampleDialogSport");
                 ExampleDialogSport.position++;
+            }
+        });
+
+        inizio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(TSport.this, PreSport.class);
+                intent.putExtra("list", mExampleList);
+                startActivity(intent);
             }
         });
 
@@ -67,12 +78,7 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         mAdapter.setOnItemClickListener(new ExampleAdapterSport.OnItemClickListener() {
             //se si clicca l'item si attiva usa funzione
             public void onItemClick(int position){
-                Intent intent= new Intent(getApplicationContext(), PreSport.class);
-                Bundle bundle=new Bundle();
-                bundle.putLong("tempo", tempo2);
-                bundle.putInt("rep",inputrep);
-                intent.putExtras(bundle);
-                startActivity(intent);
+
             }
             @Override
             public void onDeleteClick(int position) {
@@ -93,11 +99,9 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         long secondi=Long.parseLong(second);
         long time=ore*60+minuti;
         int ripetizioni=Integer.parseInt(rep);
-        mExampleList.add(new ExampleItemSport(nome, "Durata attività: " + time+ " minuti"));
-        mAdapter.notifyItemInserted(position);
         long input=(ore*3600+minuti*60+secondi)*1000;
-        tempo2=input;
-        inputrep=ripetizioni;
+        mExampleList.add(new ExampleItemSport(nome, "Durata attività: " + time+ " minuti", input,ripetizioni));
+        mAdapter.notifyItemInserted(position);
 
     }
 

@@ -75,7 +75,6 @@ public class Studio extends AppCompatActivity implements ExampleDialog.ExampleDi
     }
 
 
-
     public void removeItem(int position) {
         mExampleList.remove(position);
         mAdapter.notifyItemRemoved(position);
