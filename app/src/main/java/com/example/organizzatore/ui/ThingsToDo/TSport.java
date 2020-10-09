@@ -38,7 +38,7 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         mExampleList = new ArrayList<>();
         buildRecyclerView();

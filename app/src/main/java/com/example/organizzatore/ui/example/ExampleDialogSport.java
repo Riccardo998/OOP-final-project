@@ -35,7 +35,7 @@ public class ExampleDialogSport extends DialogFragment {
     private NumberPicker hour;
     private NumberPicker minute;
     private NumberPicker second;
-    public TextView H;
+    public  TextView H;
     public  TextView Min;
     public  TextView S;
 

@@ -73,7 +73,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="125dp"
-            android:text=""
+            android:text="1"
             android:textAlignment="center"
             android:textSize="23dp" />
 
@@ -82,7 +82,7 @@
             android:layout_width="67dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:text=""
+            android:text="0"
             android:textAlignment="center"
             android:textSize="23dp" />
 
@@ -91,7 +91,7 @@
             android:layout_width="61dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:text=""
+            android:text="0"
             android:textAlignment="center"
             android:textSize="23dp" />
 

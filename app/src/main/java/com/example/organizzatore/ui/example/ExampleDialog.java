@@ -65,43 +65,42 @@ public class ExampleDialog extends DialogFragment {
         });
 
 
-
-            negativeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getDialog().dismiss();
-                }
-            });
-
-            //se con la funzione addTextChangedListener il bottone crea è stato abilitato, dovrebbe funzionare tutto ciò
-            //nel bottone crea, inserisco le mie due variabili nome e radioId, che mi serviranno per la funzione da implementare (applyProgram)
-            //radioId è l'ID del bottone scelto tra Studio e Allenamento,mentre il nome è quello che abbiamo scritto per il nostro nuovo programma
-            positiveButton.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.M)
-                @Override
-                public void onClick(View v) {
-                    String nome = textInputNome.getText().toString().trim();
-                    listener.insertItem(nome, position);
-                    getDialog().dismiss();
-                }
-            });
-
-            return view;
-        }
-
-
-        @Override
-        public void onAttach (Context context){
-            super.onAttach(context);
-            try {
-                listener = (ExampleDialogListener) context;
-            } catch (ClassCastException e) {
-                throw new ClassCastException(context.toString() +
-                        "must implement ExampleDialogListener");
+        negativeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
             }
-        }
+        });
 
-        public interface ExampleDialogListener {
-            void insertItem(String nome, int position);
+        //se con la funzione addTextChangedListener il bottone crea è stato abilitato, dovrebbe funzionare tutto ciò
+        //nel bottone crea, inserisco le mie due variabili nome e radioId, che mi serviranno per la funzione da implementare (applyProgram)
+        //radioId è l'ID del bottone scelto tra Studio e Allenamento,mentre il nome è quello che abbiamo scritto per il nostro nuovo programma
+        positiveButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                String nome = textInputNome.getText().toString().trim();
+                listener.insertItem(nome, position);
+                getDialog().dismiss();
+            }
+        });
+
+        return view;
+    }
+
+
+    @Override
+    public void onAttach (Context context){
+        super.onAttach(context);
+        try {
+            listener = (ExampleDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+                    "must implement ExampleDialogListener");
         }
+    }
+
+    public interface ExampleDialogListener {
+        void insertItem(String nome, int position);
+    }
 }

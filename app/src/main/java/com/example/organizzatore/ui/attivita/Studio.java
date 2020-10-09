@@ -29,6 +29,7 @@ public class Studio extends AppCompatActivity implements ExampleDialog.ExampleDi
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
 
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

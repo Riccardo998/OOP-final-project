@@ -30,4 +30,6 @@
     <string name="inizio">Inizio</string>
     <string name="tempoattivita">Durata attività (in minuti)</string>
     <string name="tempoinizio">00:00</string>
+    <string name="organizzatore">Organizzatore</string>
+    <string name="subtitle">Organizza al meglio la tua giornata</string>
 </resources>

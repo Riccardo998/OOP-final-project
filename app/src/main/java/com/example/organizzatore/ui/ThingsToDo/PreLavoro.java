@@ -110,6 +110,7 @@ public class PreLavoro extends AppCompatActivity {
             btn_next.setEnabled(false);
             btn_reset.setEnabled(false);
             btn_pause.setEnabled(false);
+            btn_start.setEnabled(false);
             Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
 
         }else {

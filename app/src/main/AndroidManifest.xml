@@ -50,15 +50,16 @@
             android:name=".ui.ThingsToDo.TSport"
             android:label="Esercizio da svolgere"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TSport"
-            />
-        <activity
-            android:name=".ui.ThingsToDo.PreSport"
-            android:label="Andiamo"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TSport"
+            android:parentActivityName="com.example.organizzatore.ui.attivita.Sport"
             />
 
+        <activity
+            android:name=".ui.ThingsToDo.PreSport"
+            android:configChanges="orientation"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.UserDialog"
+            android:excludeFromRecents="true"
+            />
 
         <activity
             android:name=".ui.ThingsToDo.TStudio"

@@ -1,8 +1,11 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,12 +19,13 @@ import com.example.organizzatore.ui.example.ExampleItemSport;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class PreSport extends AppCompatActivity {
+public class PreSport extends Activity {
 
     private Button btn_start;
     private Button btn_pause;
     private Button btn_reset;
     private Button btn_next;
+    private Button btn_chiudi;
     private TextView chronometer;
     private TextView attivita;
 
@@ -38,10 +42,8 @@ public class PreSport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pre_sport);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        this.setFinishOnTouchOutside(false);
 
         arrayList=(ArrayList<ExampleItemSport>) getIntent().getSerializableExtra("list");
 
@@ -55,7 +57,7 @@ public class PreSport extends AppCompatActivity {
         btn_reset=findViewById(R.id.btn_reset);
         btn_start=findViewById(R.id.btn_start);
         btn_next=findViewById(R.id.btn_next);
-        btn_next=findViewById(R.id.btn_next);
+        btn_chiudi=findViewById(R.id.btn_close);
         attivita=findViewById(R.id.attività);
 
         setTime(data,title,rep);
@@ -82,6 +84,13 @@ public class PreSport extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nextTimer();
+            }
+        });
+        btn_chiudi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), TStudio.class);
+                        startActivity(intent);
             }
         });
 
@@ -113,6 +122,7 @@ public class PreSport extends AppCompatActivity {
             btn_next.setEnabled(false);
             btn_reset.setEnabled(false);
             btn_pause.setEnabled(false);
+            btn_start.setEnabled(false);
             Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
 
         }else {
