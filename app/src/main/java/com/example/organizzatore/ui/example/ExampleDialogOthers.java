@@ -10,7 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -23,10 +28,17 @@ public class ExampleDialogOthers extends DialogFragment {
     private EditText textInputNome;
     private Button positiveButton;
     private Button negativeButton;
-    private ExampleDialogOthers.ExampleDialogListener listener;
+    private ExampleDialogListener listener;
+    private EditText textInputTempo;
     public static int position=0;
 
     public static final String TAG = "ExampleDialogOthers";
+    private NumberPicker hour;
+    private NumberPicker minute;
+    private NumberPicker second;
+    public  TextView H;
+    public  TextView Min;
+    public  TextView S;
 
     @NonNull
     @Override
@@ -38,9 +50,46 @@ public class ExampleDialogOthers extends DialogFragment {
         textInputNome = view.findViewById(R.id.tiCrea);
         positiveButton = view.findViewById(R.id.positivebutton);
         negativeButton = view.findViewById(R.id.negativebutton);
+        //textInputTempo= view.findViewById(R.id.tiTempo);
 
         //disabilito il pulsante crea
         positiveButton.setEnabled(false);
+
+        hour= view.findViewById(R.id.hour);
+        minute=view.findViewById(R.id.minute);
+        second=view.findViewById(R.id.second);
+
+        H=view.findViewById(R.id.tvH);
+        Min=view.findViewById(R.id.tvM);
+        S=view.findViewById(R.id.tvS);
+
+        hour.setMinValue(0);
+        hour.setMaxValue(23);
+        minute.setMinValue(0);
+        minute.setMaxValue(59);
+        second.setMinValue(0);
+        second.setMaxValue(59);
+
+        hour.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                H.setText(""+newVal);
+            }
+        });
+
+        minute.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                Min.setText(""+newVal);
+            }
+        });
+
+        second.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                S.setText(""+newVal);
+            }
+        });
 
         //sfruttando due TextWatcher, modifico il bottone crea, cioè lo abilito o no a seconda del fatto se sto scrivendo o no il nome del programma e se ho inserito la posizione
         textInputNome.addTextChangedListener(new TextWatcher() {
@@ -53,7 +102,12 @@ public class ExampleDialogOthers extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String nome = textInputNome.getText().toString().trim();
-                positiveButton.setEnabled(!nome.isEmpty());
+                //String input= textInputTempo.getText().toString();
+                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
+                String ore= H.getText().toString().trim();
+                String minuti= Min.getText().toString().trim();
+                String secondi= S.getText().toString().trim();
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
             }
 
             @Override
@@ -61,6 +115,93 @@ public class ExampleDialogOthers extends DialogFragment {
             }
         });
 
+        H.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            //implemento solo questa. Mentre sto scrivendo il nome e la posizione, rendo attivo il crea. Se uno dei due campi è vuoto, il bottone crea rimane disabilitato
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String nome = textInputNome.getText().toString().trim();
+                //String input= textInputTempo.getText().toString();
+                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
+                String ore= H.getText().toString().trim();
+                String minuti= Min.getText().toString().trim();
+                String secondi= S.getText().toString().trim();
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        Min.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            //implemento solo questa. Mentre sto scrivendo il nome e la posizione, rendo attivo il crea. Se uno dei due campi è vuoto, il bottone crea rimane disabilitato
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String nome = textInputNome.getText().toString().trim();
+                //String input= textInputTempo.getText().toString();
+                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
+                String ore= H.getText().toString().trim();
+                String minuti= Min.getText().toString().trim();
+                String secondi= S.getText().toString().trim();
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        S.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            //implemento solo questa. Mentre sto scrivendo il nome e la posizione, rendo attivo il crea. Se uno dei due campi è vuoto, il bottone crea rimane disabilitato
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String nome = textInputNome.getText().toString().trim();
+                //String input= textInputTempo.getText().toString();
+                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
+                String ore= H.getText().toString().trim();
+                String minuti= Min.getText().toString().trim();
+                String secondi= S.getText().toString().trim();
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        /*textInputTempo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            //implemento solo questa. Mentre sto scrivendo il nome e la posizione, rendo attivo il crea. Se uno dei due campi è vuoto, il bottone crea rimane disabilitato
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String nome = textInputNome.getText().toString().trim();
+                String input= textInputTempo.getText().toString();
+                positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        }); */
 
         negativeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +215,12 @@ public class ExampleDialogOthers extends DialogFragment {
             @Override
             public void onClick(View v) {
                 String nome = textInputNome.getText().toString().trim();
-
-                listener.insertItem(nome, position);
+                //String input= textInputTempo.getText().toString();
+                //listener.insertItem(nome, position, input);
+                String ore= H.getText().toString().trim();
+                String minuti= Min.getText().toString().trim();
+                String secondi= S.getText().toString().trim();
+                listener.insertItem(nome, position, ore, minuti, secondi);
                 getDialog().dismiss();
             }
         });
@@ -87,7 +232,7 @@ public class ExampleDialogOthers extends DialogFragment {
     public void onAttach (Context context){
         super.onAttach(context);
         try {
-            listener = (ExampleDialogOthers.ExampleDialogListener) context;
+            listener = (ExampleDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() +
                     "must implement ExampleDialogListener");
@@ -95,8 +240,8 @@ public class ExampleDialogOthers extends DialogFragment {
     }
 
     public interface ExampleDialogListener {
-        void insertItem(String nome, int position);
-    }
+        void insertItem(String nome, int position, String hour, String minute, String second);
 
+    }
 
 }

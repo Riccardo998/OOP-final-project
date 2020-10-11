@@ -14,22 +14,9 @@
         tools:layout_editor_absoluteX="-26dp"
         tools:layout_editor_absoluteY="338dp">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
 
         <TextView
+            android:id="@+id/attività"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -61,6 +48,7 @@
                 android:layout_marginStart="8dp" />
 
             <TextView
+                android:id="@+id/cosedafare"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
@@ -78,6 +66,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/rep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -101,7 +90,7 @@
             <Button
                 android:id="@+id/btn_pause"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginRight="24dp"
                 android:background="#ffffff"
                 android:text="pausa"
@@ -110,7 +99,7 @@
             <Button
                 android:id="@+id/btn_start"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="24dp"
                 android:background="#60CF44"
                 android:text="start"
@@ -136,8 +125,19 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="70dp"
             android:text="next"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:text="Chiudi"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="16sp" />

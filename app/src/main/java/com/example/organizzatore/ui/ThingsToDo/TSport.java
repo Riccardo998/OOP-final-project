@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
@@ -15,24 +16,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.organizzatore.R;
 import com.example.organizzatore.ui.example.ExampleAdapterSport;
 import com.example.organizzatore.ui.example.ExampleDialogSport;
+import com.example.organizzatore.ui.example.ExampleItemOthers;
 import com.example.organizzatore.ui.example.ExampleItemSport;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class TSport extends AppCompatActivity implements ExampleDialogSport.ExampleDialogListener{
-    public ExampleAdapterSport
-            mAdapter;
+    public ExampleAdapterSport mAdapter;
     public ArrayList<ExampleItemSport> mExampleList;
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
+    public Button inizio;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.t_sport); //TODO implement layout all_pre per tutti, metto il + ... devo capire se è per tutti e negli altri metto rep =1  o solo per sport
+        setContentView(R.layout.t_sport);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -41,6 +43,8 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         mExampleList = new ArrayList<>();
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
+        inizio=findViewById(R.id.buttonstart);
+
         //bottone +
         opendialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +52,15 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
                 ExampleDialogSport exampleDialogSport = new ExampleDialogSport();
                 exampleDialogSport.show(getFragmentManager(),"ExampleDialogSport");
                 ExampleDialogSport.position++;
+            }
+        });
+
+        inizio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(TSport.this, PreSport.class);
+                intent.putExtra("list", mExampleList);
+                startActivity(intent);
             }
         });
 
@@ -65,7 +78,7 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         mAdapter.setOnItemClickListener(new ExampleAdapterSport.OnItemClickListener() {
             //se si clicca l'item si attiva usa funzione
             public void onItemClick(int position){
-                startActivity(new Intent(getApplicationContext(), PreSport.class)); //todo linkare qui nel .class prima del . la classe corretta : il preimpostato
+
             }
             @Override
             public void onDeleteClick(int position) {
@@ -80,10 +93,16 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void insertItem(String nome, int position) {
-
-        mExampleList.add(new ExampleItemSport(nome, "This is Line " + position));
+    public void insertItem(String nome, int position, String rep, String hour, String minute, String second ) {
+        long ore=Long.parseLong(hour);
+        long minuti=Long.parseLong(minute);
+        long secondi=Long.parseLong(second);
+        long time=ore*60+minuti;
+        int ripetizioni=Integer.parseInt(rep);
+        long input=(ore*3600+minuti*60+secondi)*1000;
+        mExampleList.add(new ExampleItemSport(nome, "Durata attività: " + ore + " : " + minuti + " : " + secondi , input,ripetizioni)); //time
         mAdapter.notifyItemInserted(position);
+
     }
 
 }

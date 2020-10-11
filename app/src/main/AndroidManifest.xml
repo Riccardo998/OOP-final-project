@@ -21,84 +21,74 @@
         <activity
             android:name=".ui.attivita.Sport"
             android:label="Sport da organizzare"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.attivita.Studio"
             android:label="Materie"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.attivita.Lavoro"
             android:label="Attività lavorative"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.attivita.FreeTime"
             android:label="Cosa si fa?"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.ThingsToDo.TSport"
             android:label="Esercizio da svolgere"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TSport"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ThingsToDo.PreSport"
-            android:label="Andiamo"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TSport"
-            />
+            android:configChanges="orientation"
+            android:excludeFromRecents="true"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.UserDialog" />
 
 
         <activity
             android:name=".ui.ThingsToDo.TStudio"
             android:label="Organizzazione studio"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TStudio"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ThingsToDo.PreStudio"
             android:label="Non mollare!"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TStudio"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
 
         <activity
             android:name=".ui.ThingsToDo.TLavoro"
-            android:label="ToDo list"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:label="To do list"
             android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TLavoro"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ThingsToDo.PreLavoro"
             android:label="Chi ben inizia..."
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TLavoro"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.ThingsToDo.TFreeTime"
             android:label="suddividi il tempo"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TFreeTime"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ThingsToDo.PreFreeTime"
             android:label="Buon divertimento!"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TFreeTime"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

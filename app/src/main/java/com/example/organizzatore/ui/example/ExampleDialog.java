@@ -40,6 +40,7 @@ public class ExampleDialog extends DialogFragment {
         positiveButton = view.findViewById(R.id.positivebutton);
         negativeButton = view.findViewById(R.id.negativebutton);
 
+
         //disabilito il pulsante crea
         positiveButton.setEnabled(false);
 
@@ -55,8 +56,6 @@ public class ExampleDialog extends DialogFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String nome = textInputNome.getText().toString().trim();
                 positiveButton.setEnabled(!nome.isEmpty());
-
-
             }
 
             @Override
@@ -104,4 +103,5 @@ public class ExampleDialog extends DialogFragment {
         public interface ExampleDialogListener {
             void insertItem(String nome, int position);
         }
+
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.attivita.Studio"
+    tools:context=".ui.ThingsToDo.PreLavoro"
     android:background="#FFFFFF">
 
     <LinearLayout
@@ -30,6 +30,7 @@
 
 
         <TextView
+            android:id="@+id/attività"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -61,6 +62,7 @@
                 android:layout_marginStart="8dp" />
 
             <TextView
+                android:id="@+id/cosedafare"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
@@ -84,7 +86,7 @@
             <Button
                 android:id="@+id/btn_pause"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginRight="24dp"
                 android:background="#ffffff"
                 android:text="pausa"
@@ -93,7 +95,7 @@
             <Button
                 android:id="@+id/btn_start"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="24dp"
                 android:background="#60CF44"
                 android:text="start"
@@ -119,7 +121,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             android:text="next"
             android:textAlignment="center"
             android:textColor="#000000"
