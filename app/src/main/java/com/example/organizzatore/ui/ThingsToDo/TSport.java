@@ -1,8 +1,10 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -34,8 +36,9 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.t_sport);
+        setContentView(R.layout.t_studio);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.esercizi));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -44,6 +47,7 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
         inizio=findViewById(R.id.buttonstart);
+        inizio.setEnabled(false);
 
         //bottone +
         opendialog.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +94,8 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
     public void removeItem(int position) {
         mExampleList.remove(position);
         mAdapter.notifyItemRemoved(position);
+        if (mExampleList.isEmpty())
+            inizio.setEnabled(false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -100,9 +106,9 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         long time=ore*60+minuti;
         int ripetizioni=Integer.parseInt(rep);
         long input=(ore*3600+minuti*60+secondi)*1000;
-        mExampleList.add(new ExampleItemSport(nome, "Durata attività: " + ore + " : " + minuti + " : " + secondi , input,ripetizioni)); //time
+        mExampleList.add(new ExampleItemSport(nome, "Durata attività: " + time+ " minuti", input,ripetizioni));
         mAdapter.notifyItemInserted(position);
-
+        inizio.setEnabled(true);
     }
 
 }

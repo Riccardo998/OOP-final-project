@@ -1,7 +1,13 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -9,13 +15,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.organizzatore.R;
 import com.example.organizzatore.ui.example.ExampleItemSport;
+
 import java.util.ArrayList;
 import java.util.Locale;
-import com.example.organizzatore.ui.attivita.Sport;
-public class PreSport extends Activity {
 
+public class PreSport extends Activity {
+    private NotificationHelper mNotificationHelper;
     private Button btn_start;
     private Button btn_pause;
     private Button btn_reset;
@@ -33,13 +46,15 @@ public class PreSport extends Activity {
     private ArrayList<ExampleItemSport> arrayList;
     private int n;
 
+    private MediaPlayer player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pre_sport);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         this.setFinishOnTouchOutside(false);
-
+        mNotificationHelper = new NotificationHelper(this);
         arrayList=(ArrayList<ExampleItemSport>) getIntent().getSerializableExtra("list");
 
         final long data = arrayList.get(i).getTime();
@@ -52,9 +67,12 @@ public class PreSport extends Activity {
         btn_reset=findViewById(R.id.btn_reset);
         btn_start=findViewById(R.id.btn_start);
         btn_next=findViewById(R.id.btn_next);
-        btn_next=findViewById(R.id.btn_next);
         btn_chiudi=findViewById(R.id.btn_close);
         attivita=findViewById(R.id.attività);
+
+        btn_next.setEnabled(false);
+        btn_pause.setEnabled(false);
+        btn_reset.setEnabled(false);
 
         setTime(data,title,rep);
 
@@ -77,16 +95,25 @@ public class PreSport extends Activity {
             }
         });
         btn_next.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 nextTimer();
+                stopPlayer();
             }
         });
         btn_chiudi.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TSport.class);
-                startActivity(intent);
+                stopPlayer();
+                Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, 0, pendingIntent);
+                Intent intent2 = new Intent(getApplicationContext(), TSport.class);
+                startActivity(intent2);
             }
         });
 
@@ -100,42 +127,53 @@ public class PreSport extends Activity {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
+
             @Override
             public void onFinish() {
-
+                play();
+                if(i == n - 1){
+                    btn_next.setEnabled(false);
+                    btn_reset.setEnabled(false);
+                    btn_pause.setEnabled(false);
+                    btn_start.setEnabled(false);
+                }
             }
         }.start();
+
+        btn_pause.setEnabled(true);
+        btn_reset.setEnabled(true);
+        if(i!=n-1)
+            btn_next.setEnabled(true);
+        else
+            btn_next.setEnabled(false);
+        btn_start.setEnabled(false);
     }
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
+        btn_start.setEnabled(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void nextTimer(){
-        if(i == n - 1){
-            mCountDownTimer.cancel();
-            mCountDownTimer.onFinish();
+        mCountDownTimer.cancel();
+        mCountDownTimer.onFinish();
+        i++;
+        if(i==n-1)
             btn_next.setEnabled(false);
-            btn_reset.setEnabled(false);
-            btn_pause.setEnabled(false);
-            btn_start.setEnabled(false);
-            Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
-
-        }else {
-            mCountDownTimer.cancel();
-            mCountDownTimer.onFinish();
-            i++;
-            String title = arrayList.get(i).getText1();
-            long time = arrayList.get(i).getTime();
-            int rep= arrayList.get(i).getRep();
-            setTime(time,title,rep);
-            startTimer();
-        }
+        Toast.makeText(getApplication(), "HAI COMPLETATO LA TASK N. "+ i, Toast.LENGTH_SHORT).show();
+        String title = arrayList.get(i).getText1();
+        long time = arrayList.get(i).getTime();
+        int rep= arrayList.get(i).getRep();
+        setTime(time,title,rep);
+        btn_start.setEnabled(true);
     }
 
     private void resetTimer() {
+        stopPlayer();
         mCountDownTimer.cancel();
         mTimeLeftInMillis = mStartTimeInMillis;
+        btn_start.setEnabled(true);
         updateCountDownText();
     }
 
@@ -156,12 +194,32 @@ public class PreSport extends Activity {
 
     public void setTime(long milliseconds, String title, int ripetizioni) {
         TextView rep=findViewById(R.id.rep);
-        rep.setText("" + ripetizioni);
+        rep.setText(""+ ripetizioni);
         TextView textView=findViewById(R.id.cosedafare);
         textView.setText(title);
         mStartTimeInMillis = milliseconds;
         mTimeLeftInMillis = mStartTimeInMillis;
         updateCountDownText();
+    }
+
+    public void play() {
+        if (player == null) {
+            player = MediaPlayer.create(this, R.raw.song);
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+        player.start();
+    }
+
+    private void stopPlayer() {
+        if (player != null) {
+            player.release();
+            player = null;
+        }
     }
 }
 

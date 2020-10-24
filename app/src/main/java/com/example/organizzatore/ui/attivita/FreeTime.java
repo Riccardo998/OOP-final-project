@@ -9,11 +9,13 @@ import android.provider.BaseColumns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.organizzatore.R;
 import com.example.organizzatore.data.adapter.FreeTimeDbAdapter;
 import com.example.organizzatore.data.AttivitaDbHelper;
@@ -22,23 +24,23 @@ import com.example.organizzatore.ui.ThingsToDo.TFreeTime;
 import com.example.organizzatore.ui.example.ExampleDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class FreeTime  extends AppCompatActivity implements ExampleDialog.ExampleDialogListener{
+public class FreeTime extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
 
     public String name;
     public FreeTimeDbAdapter mAdapter;
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
-    private AttivitaDbHelper
-            mDbHelper;
+    private AttivitaDbHelper mDbHelper;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.free_time);
+        setContentView(R.layout.studio);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.hobby));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -53,7 +55,7 @@ public class FreeTime  extends AppCompatActivity implements ExampleDialog.Exampl
             @Override
             public void onClick(View v) {
                 ExampleDialog exampleDialog = new ExampleDialog();
-                exampleDialog.show(getFragmentManager(),"ExampleDialog");
+                exampleDialog.show(getFragmentManager(), "ExampleDialog");
                 ExampleDialog.position++;
             }
         });
@@ -71,18 +73,18 @@ public class FreeTime  extends AppCompatActivity implements ExampleDialog.Exampl
         mAdapter.setOnItemClickListener(new FreeTimeDbAdapter.OnItemClickListener() {
 
             //se si clicca l'item si attiva usa funzione
-            public void onItemClick(int position){
+            public void onItemClick(int position) {
                 startActivity(new Intent(getApplicationContext(), TFreeTime.class));
 
             }
+
             @Override
-            public void onDeleteClick (int position) {
+            public void onDeleteClick(int position) {
                 int x = ReadID(position);
                 removeItem(x);
             }
         });
     }
-
 
 
     public void removeItem(int position) {
@@ -93,7 +95,7 @@ public class FreeTime  extends AppCompatActivity implements ExampleDialog.Exampl
 
 
     /*dovrebbe eprmettere di leggere il corretto id dell'item in una data posizione*/
-    public int ReadID(int position){
+    public int ReadID(int position) {
         mDbHelper = new AttivitaDbHelper(this);
         SQLiteDatabase
                 db = mDbHelper.getReadableDatabase();
@@ -114,11 +116,11 @@ public class FreeTime  extends AppCompatActivity implements ExampleDialog.Exampl
         );
         try {
             int idColumnIndex = cursor.getColumnIndex(FreeTimeEntry._ID);
-            int currentID  = 0;
-            int cg=0;
+            int currentID = 0;
+            int cg = 0;
             while ((cursor.moveToNext() == true) && (cg != (position + 1))) {
                 currentID = cursor.getInt(idColumnIndex);
-                cg ++;
+                cg++;
 
             }
             return currentID;
@@ -128,9 +130,6 @@ public class FreeTime  extends AppCompatActivity implements ExampleDialog.Exampl
 
 
     }
-
-
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -144,7 +143,7 @@ public class FreeTime  extends AppCompatActivity implements ExampleDialog.Exampl
 
 
     /*PARTE PER DISPLAY ----DEBUG -----*/
-    public void dbReadActivity (){
+    public void dbReadActivity() {
         mDbHelper = new AttivitaDbHelper(this);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -173,42 +172,6 @@ public class FreeTime  extends AppCompatActivity implements ExampleDialog.Exampl
                 null,                   // don't filter by row groups
                 sortOrder               // The sort order
         );
-
-        TextView
-                displayView = (TextView) findViewById(R.id.text_view_out);
-
-        try {
-            displayView.setText("La tabella attività contiene: " + cursor.getCount() + " Freetime.\n\n");
-            displayView.append(FreeTimeEntry._ID + " - " +
-                    FreeTimeEntry.COLUMN_ATTIVITA + " - " +
-                   /* SportEntry.COLUMN_COSE_DA_FARE + " - " +
-                    SportEntry.COLUMN_REP + " - " +
-                    SportEntry.COLUMN_TIME +*/ "\n");
-
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(FreeTimeEntry._ID);
-            int attivitaColumnIndex = cursor.getColumnIndex(FreeTimeEntry.COLUMN_ATTIVITA);
-
-
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word
-                // at the current row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentAttivita = cursor.getString(attivitaColumnIndex);
-                // Display the values from each column of the current row in the cursor in the TextView
-                displayView.append(("\n" + currentID + " - " +
-                        currentAttivita + " - " /*+
-                        currentCdf + " - " +
-                        currentREP + " - " +
-                        currentTime*/));
-            }
-        } finally {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            // resources and makes it invalid.
-            cursor.close();
-        }
     }
 }
 

@@ -3,95 +3,139 @@
     package="com.example.organizzatore">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:configChanges="uiMode"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".Impostazioni"
+            android:label="@string/impostazioni"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="uiMode"
+            android:parentActivityName=".MainActivity"/>
+
         <activity
             android:name=".ui.attivita.Sport"
-            android:label="Sport da organizzare"
+            android:label="@string/sportorganize"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="uiMode"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
 
         <activity
             android:name=".ui.attivita.Studio"
-            android:label="Materie"
+            android:label="@string/materie"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="uiMode"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
 
         <activity
             android:name=".ui.attivita.Lavoro"
-            android:label="Attività lavorative"
+            android:label="@string/attivitàlavoro"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="uiMode"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
 
         <activity
             android:name=".ui.attivita.FreeTime"
-            android:label="Cosa si fa?"
+            android:label="@string/hobby"
+            android:configChanges="uiMode"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
 
         <activity
             android:name=".ui.ThingsToDo.TSport"
-            android:label="Esercizio da svolgere"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TSport"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/esercizi"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="uiMode"
+            android:parentActivityName="com.example.organizzatore.ui.attivita.Sport"
+            />
+
         <activity
             android:name=".ui.ThingsToDo.PreSport"
-            android:configChanges="orientation"
-            android:excludeFromRecents="true"
+            android:configChanges="uiMode"
             android:screenOrientation="sensor"
-            android:theme="@style/Theme.UserDialog" />
-
+            android:theme="@style/Theme.UserDialog"
+            android:excludeFromRecents="true"
+            />
 
         <activity
             android:name=".ui.ThingsToDo.TStudio"
-            android:label="Organizzazione studio"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TStudio"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/esercizi"
+            android:configChanges="uiMode"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.example.organizzatore.ui.attivita.Studio"
+            />
         <activity
             android:name=".ui.ThingsToDo.PreStudio"
-            android:label="Non mollare!"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TStudio"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-
+            android:configChanges="uiMode"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.UserDialog"
+            android:excludeFromRecents="true"
+            />
         <activity
             android:name=".ui.ThingsToDo.TLavoro"
-            android:label="To do list"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TLavoro"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/sottolavori"
+            android:configChanges="uiMode"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.example.organizzatore.ui.attivita.Lavoro"
+            />
         <activity
             android:name=".ui.ThingsToDo.PreLavoro"
-            android:label="Chi ben inizia..."
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TLavoro"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:configChanges="uiMode"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.UserDialog"
+            android:excludeFromRecents="true"
+            />
 
         <activity
             android:name=".ui.ThingsToDo.TFreeTime"
-            android:label="suddividi il tempo"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TFreeTime"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/hobbyorganize"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="uiMode"
+            android:parentActivityName="com.example.organizzatore.ui.attivita.FreeTime"
+            />
         <activity
             android:name=".ui.ThingsToDo.PreFreeTime"
-            android:label="Buon divertimento!"
-            android:parentActivityName="com.example.organizzatore.ui.ThingsToDo.TFreeTime"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:configChanges="uiMode"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.UserDialog"
+            android:excludeFromRecents="true"
+            />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <receiver
+            android:name=".ui.ThingsToDo.AlertReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
 
     </application>

@@ -1,8 +1,10 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,6 @@ import com.example.organizzatore.ui.example.ExampleAdapterOthers;
 import com.example.organizzatore.ui.example.ExampleDialogOthers;
 import com.example.organizzatore.ui.example.ExampleItemOthers;
 
-import com.example.organizzatore.ui.example.ExampleItemSport;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
         super.onCreate(savedInstanceState);
         setContentView(R.layout.t_studio);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.esercizi));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -44,6 +46,7 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
         inizio=findViewById(R.id.buttonstart);
+        inizio.setEnabled(false);
 
         //bottone +
         opendialog.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +91,8 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
     public void removeItem(int position) {
         mExampleList.remove(position);
         mAdapter.notifyItemRemoved(position);
+        if (mExampleList.isEmpty())
+            inizio.setEnabled(false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -97,8 +102,8 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
         long secondi=Long.parseLong(second);
         long time=ore*60+minuti;
         long input=(ore*3600+minuti*60+secondi)*1000;
-        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + ore + " : " + minuti + " : " + secondi , input)); //time
+        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + time+ " minuti", input));
         mAdapter.notifyItemInserted(position);
+        inizio.setEnabled(true);
     }
-
 }

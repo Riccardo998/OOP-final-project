@@ -19,6 +19,27 @@ import com.example.organizzatore.ui.example.ExampleItemOthers;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.organizzatore.R;
+import com.example.organizzatore.ui.example.ExampleAdapterOthers;
+import com.example.organizzatore.ui.example.ExampleDialogOthers;
+import com.example.organizzatore.ui.example.ExampleItemOthers;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.util.ArrayList;
+
 public class TLavoro extends AppCompatActivity implements ExampleDialogOthers.ExampleDialogListener {
     public ExampleAdapterOthers mAdapter;
     public ArrayList<ExampleItemOthers> mExampleList;
@@ -31,8 +52,9 @@ public class TLavoro extends AppCompatActivity implements ExampleDialogOthers.Ex
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.t_lavoro);
+        setContentView(R.layout.t_studio);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.sottolavori));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -41,6 +63,7 @@ public class TLavoro extends AppCompatActivity implements ExampleDialogOthers.Ex
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
         inizio=findViewById(R.id.buttonstart);
+        inizio.setEnabled(false);
 
         //bottone +
         opendialog.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +119,9 @@ public class TLavoro extends AppCompatActivity implements ExampleDialogOthers.Ex
         long secondi=Long.parseLong(second);
         long time=ore*60+minuti;
         long input=(ore*3600+minuti*60+secondi)*1000;
-        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + ore + " : " + minuti + " : " + secondi , input)); //time
+        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + time+ " minuti",input));
         mAdapter.notifyItemInserted(position);
+        inizio.setEnabled(true);
     }
 
 }

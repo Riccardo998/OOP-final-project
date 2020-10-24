@@ -35,7 +35,7 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:text="Crea"
+            android:text="@string/crea"
             android:textColor="@android:color/holo_red_dark" />
 
         <Button
@@ -45,7 +45,7 @@
             android:layout_marginLeft="106dp"
             android:layout_marginTop="-48dp"
             android:background="@android:color/transparent"
-            android:text="Cancella"
+            android:text="@string/cancella"
             android:textColor="@android:color/holo_red_dark" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

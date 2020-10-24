@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Che attività vuoi aggiungere?"
+        android:text="@string/askact"
         android:textSize="18dp"
         android:textColor="@android:color/holo_red_dark"/>
 
@@ -35,7 +35,7 @@
             android:id="@+id/rep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ripetizioni"
+            android:hint="@string/rep"
             android:inputType="number" />
 
     </LinearLayout>
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
-            android:text="Tempo (H:M:S)"
+            android:text="@string/tempo_h_m_s"
             android:textSize="18dp" />
 
         <NumberPicker
@@ -114,7 +114,7 @@
             android:layout_width="110dp"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="Crea"
+            android:text="@string/crea"
             android:layout_gravity="center"
             android:textColor="@android:color/holo_red_dark" />
 
@@ -126,7 +126,7 @@
             android:layout_marginRight="0dp"
             android:background="@android:color/transparent"
             android:gravity="center"
-            android:text="Cancella"
+            android:text="@string/cancella"
             android:textColor="@android:color/holo_red_dark" />
     </LinearLayout>
 

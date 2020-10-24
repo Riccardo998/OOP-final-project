@@ -1,33 +1,44 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.organizzatore.R;
 import com.example.organizzatore.ui.example.ExampleDialogOthers;
 import com.example.organizzatore.ui.example.ExampleItemOthers;
+import com.example.organizzatore.ui.example.ExampleItemSport;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class PreStudio extends AppCompatActivity {
-
+public class PreStudio extends Activity {
+    private NotificationHelper mNotificationHelper;
     private Button btn_start;
     private Button btn_pause;
     private Button btn_reset;
     private Button btn_next;
+    private Button btn_chiudi;
     private TextView chronometer;
     private TextView attivita;
 
@@ -40,20 +51,20 @@ public class PreStudio extends AppCompatActivity {
     private ArrayList<ExampleItemOthers> arrayList;
     private int n;
 
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pre_studio);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        this.setFinishOnTouchOutside(false);
+        mNotificationHelper = new NotificationHelper(this);
         arrayList=(ArrayList<ExampleItemOthers>) getIntent().getSerializableExtra("list");
 
         final long data = arrayList.get(i).getTime();
         final String title= arrayList.get(i).getText1();
+
         n = arrayList.size();
 
         chronometer=findViewById(R.id.chronometer);
@@ -61,7 +72,12 @@ public class PreStudio extends AppCompatActivity {
         btn_reset=findViewById(R.id.btn_reset);
         btn_start=findViewById(R.id.btn_start);
         btn_next=findViewById(R.id.btn_next);
+        btn_chiudi=findViewById(R.id.btn_close);
         attivita=findViewById(R.id.attività);
+
+        btn_next.setEnabled(false);
+        btn_pause.setEnabled(false);
+        btn_reset.setEnabled(false);
 
         setTime(data,title);
 
@@ -84,11 +100,28 @@ public class PreStudio extends AppCompatActivity {
             }
         });
         btn_next.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
+                stopPlayer();
                 nextTimer();
             }
         });
+        btn_chiudi.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                stopPlayer();
+                Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, 0, pendingIntent);
+                Intent intent2 = new Intent(getApplicationContext(), TStudio.class);
+                startActivity(intent2);
+            }
+        });
+
     }
 
     private void startTimer() {
@@ -101,38 +134,48 @@ public class PreStudio extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-
+                play();
+                if(i == n - 1){
+                    btn_next.setEnabled(false);
+                    btn_reset.setEnabled(false);
+                    btn_pause.setEnabled(false);
+                    btn_start.setEnabled(false);
+                }
             }
         }.start();
+        btn_pause.setEnabled(true);
+        btn_reset.setEnabled(true);
+        if(i!=n-1)
+            btn_next.setEnabled(true);
+        else
+            btn_next.setEnabled(false);
+        btn_start.setEnabled(false);
     }
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
+        btn_start.setEnabled(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void nextTimer(){
-        if(i == n - 1){
-            mCountDownTimer.cancel();
-            mCountDownTimer.onFinish();
+        mCountDownTimer.cancel();
+        mCountDownTimer.onFinish();
+        i++;
+        if(i==n-1)
             btn_next.setEnabled(false);
-            btn_reset.setEnabled(false);
-            btn_pause.setEnabled(false);
-            Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
-
-        }else {
-            mCountDownTimer.cancel();
-            mCountDownTimer.onFinish();
-            i++;
-            String title = arrayList.get(i).getText1();
-            long time = arrayList.get(i).getTime();
-            setTime(time,title);
-            startTimer();
-        }
+        Toast.makeText(getApplication(), "HAI COMPLETATO LA TASK N. "+ i, Toast.LENGTH_SHORT).show();
+        String title = arrayList.get(i).getText1();
+        long time = arrayList.get(i).getTime();
+        setTime(time,title);
+        btn_start.setEnabled(true);
     }
 
     private void resetTimer() {
+        stopPlayer();
         mCountDownTimer.cancel();
         mTimeLeftInMillis = mStartTimeInMillis;
+        btn_start.setEnabled(true);
         updateCountDownText();
     }
 
@@ -157,5 +200,25 @@ public class PreStudio extends AppCompatActivity {
         mStartTimeInMillis = milliseconds;
         mTimeLeftInMillis = mStartTimeInMillis;
         updateCountDownText();
+    }
+
+    public void play() {
+        if (player == null) {
+            player = MediaPlayer.create(this, R.raw.song);
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+        player.start();
+    }
+
+    private void stopPlayer() {
+        if (player != null) {
+            player.release();
+            player = null;
+        }
     }
 }

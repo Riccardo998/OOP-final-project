@@ -3,29 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
     <item android:title="@string/funzionalita">
-    <menu>
+        <menu>
 
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_cronometro"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/cronometro" />
-    </menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_baseline_home_24"
+                android:title="@string/menu_home" />
+            <item
+                android:id="@+id/nav_cronometro"
+                android:icon="@drawable/ic_baseline_alarm_24"
+                android:title="@string/cronometro" />
+        </menu>
     </item>
-    <item android:title="@string/impostazioni">
-    <menu>
-        <item
-            android:id="@+id/nav_darkLight"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/darkLight" />
-        <item
-            android:id="@+id/nav_language"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/language" />
-    </menu>
-</item>
-
 </menu>

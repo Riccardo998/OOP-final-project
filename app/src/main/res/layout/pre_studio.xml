@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.attivita.Studio"
-    android:background="#FFFFFF">
+    tools:context=".ui.attivita.Studio">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,50 +13,34 @@
         tools:layout_editor_absoluteX="-26dp"
         tools:layout_editor_absoluteY="338dp">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/Tomato"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
 
         <TextView
             android:id="@+id/attività"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="nome attività"
-            android:layout_marginTop="24dp"
+            android:text="@string/daccidentro"
+            android:layout_marginTop="8dp"
             android:textAlignment="center"
-            android:textColor="#000000"
             android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:layout_marginRight="16dp"
             android:orientation="horizontal">
 
-            <TextView
+            <Chronometer
                 android:id="@+id/chronometer"
                 android:layout_width="156dp"
                 android:layout_height="50dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/tempoinizio"
+                android:format="00:00:00"
                 android:gravity="center_horizontal"
-                android:textColor="#000000"
                 android:textSize="40sp"
                 android:layout_marginStart="8dp" />
 
@@ -66,18 +49,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="cosa da fare"
-                android:textColor="#000000"
+                android:text="@string/cosa_da_fare"
                 android:textSize="16sp" />
         </LinearLayout>
-
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -86,20 +67,19 @@
             <Button
                 android:id="@+id/btn_pause"
                 android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="24dp"
-                android:background="#ffffff"
-                android:text="pausa"
+                android:background="#ff0000"
+                android:text="@string/pause"
                 android:textSize="16sp"/>
 
             <Button
                 android:id="@+id/btn_start"
                 android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:background="#60CF44"
-                android:text="start"
-                android:textColor="#000000"
+                android:text="@string/start"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:textSize="16sp"/>
@@ -111,9 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="reset"
+            android:text="@string/reset"
             android:textAlignment="center"
-            android:textColor="#000000"
             android:textSize="16sp" />
 
         <Button
@@ -121,14 +100,21 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:text="next"
+            android:layout_marginTop="70dp"
+            android:text="@string/next"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:text="@string/chiudi"
+            android:textAlignment="center"
             android:textSize="16sp" />
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

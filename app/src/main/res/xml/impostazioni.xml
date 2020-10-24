@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/darkmode">
+        <SwitchPreference
+            android:title="@string/day_night"
+            android:key="night"
+            android:defaultValue="false"
+            android:summaryOn="@string/darkmodeenable"
+            android:summaryOff="@string/darkmodedisable" />
+    </PreferenceCategory>
+
+   <PreferenceCategory
+        android:title="@string/lingua">
+        <SwitchPreference
+            android:title="@string/inglese_italiano"
+            android:key="translate"
+            android:defaultValue="false"
+            android:summaryOn="English"
+            android:summaryOff="Italiano" />
+    </PreferenceCategory>
+</PreferenceScreen>

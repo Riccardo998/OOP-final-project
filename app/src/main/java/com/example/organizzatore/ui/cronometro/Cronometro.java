@@ -1,5 +1,7 @@
 package com.example.organizzatore.ui.cronometro;
 
+import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -84,4 +86,5 @@ public class Cronometro extends Fragment {
         //ritorno sempre la view, cioè ciò che verrà visto quando premo sul menu item "Cronometro"
         return view;
     }
+
 }

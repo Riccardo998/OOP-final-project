@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/nav_cronometro"
         android:name="com.example.organizzatore.ui.cronometro.Cronometro"
-        android:label="@string/menu_cronometro"
+        android:label="@string/cronometro"
         tools:layout="@layout/fragment_cronometro" />
 
 </navigation>

@@ -36,8 +36,9 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sport);
+        setContentView(R.layout.studio);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.sportorganize));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -165,44 +166,5 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
                 null,                   // don't filter by row groups
                 sortOrder               // The sort order
         );
-
-        TextView displayView = (TextView) findViewById(R.id.text_view_out);
-
-        try {
-            displayView.setText("La tabella attività contiene: " + cursor.getCount() + " Sport.\n\n");
-            displayView.append(SportEntry._ID + " - " +
-                    SportEntry.COLUMN_ATTIVITA + " - " +
-                   /* SportEntry.COLUMN_COSE_DA_FARE + " - " +
-                    SportEntry.COLUMN_REP + " - " +
-                    SportEntry.COLUMN_TIME +*/ "\n");
-
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(SportEntry._ID);
-            int attivitaColumnIndex = cursor.getColumnIndex(SportEntry.COLUMN_ATTIVITA);
-            /*int cfdColumnIndex = cursor.getColumnIndex(SportEntry.COLUMN_COSE_DA_FARE);
-            int repColumnIndex = cursor.getColumnIndex(SportEntry.COLUMN_REP);
-            int timeColumnIndex = cursor.getColumnIndex(SportEntry.COLUMN_TIME);*/
-
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word
-                // at the current row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentAttivita = cursor.getString(attivitaColumnIndex);
-                /*String currentCdf = cursor.getString(cfdColumnIndex);
-                int currentREP = cursor.getInt(repColumnIndex);
-                int currentTime = cursor.getInt(timeColumnIndex);*/
-                // Display the values from each column of the current row in the cursor in the TextView
-                displayView.append(("\n" + currentID + " - " +
-                        currentAttivita + " - " /*+
-                        currentCdf + " - " +
-                        currentREP + " - " +
-                        currentTime*/));
-            }
-        } finally {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            cursor.close();
-        }
     }
 }

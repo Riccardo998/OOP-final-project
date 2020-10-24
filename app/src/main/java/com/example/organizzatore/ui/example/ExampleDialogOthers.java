@@ -50,7 +50,6 @@ public class ExampleDialogOthers extends DialogFragment {
         textInputNome = view.findViewById(R.id.tiCrea);
         positiveButton = view.findViewById(R.id.positivebutton);
         negativeButton = view.findViewById(R.id.negativebutton);
-        //textInputTempo= view.findViewById(R.id.tiTempo);
 
         //disabilito il pulsante crea
         positiveButton.setEnabled(false);
@@ -102,8 +101,6 @@ public class ExampleDialogOthers extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String nome = textInputNome.getText().toString().trim();
-                //String input= textInputTempo.getText().toString();
-                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
@@ -125,8 +122,6 @@ public class ExampleDialogOthers extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String nome = textInputNome.getText().toString().trim();
-                //String input= textInputTempo.getText().toString();
-                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
@@ -148,8 +143,6 @@ public class ExampleDialogOthers extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String nome = textInputNome.getText().toString().trim();
-                //String input= textInputTempo.getText().toString();
-                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
@@ -171,8 +164,6 @@ public class ExampleDialogOthers extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String nome = textInputNome.getText().toString().trim();
-                //String input= textInputTempo.getText().toString();
-                //positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
@@ -183,25 +174,6 @@ public class ExampleDialogOthers extends DialogFragment {
             public void afterTextChanged(Editable s) {
             }
         });
-
-        /*textInputTempo.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            //implemento solo questa. Mentre sto scrivendo il nome e la posizione, rendo attivo il crea. Se uno dei due campi è vuoto, il bottone crea rimane disabilitato
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String nome = textInputNome.getText().toString().trim();
-                String input= textInputTempo.getText().toString();
-                positiveButton.setEnabled(!nome.isEmpty() && !input.isEmpty());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        }); */
 
         negativeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,8 +187,6 @@ public class ExampleDialogOthers extends DialogFragment {
             @Override
             public void onClick(View v) {
                 String nome = textInputNome.getText().toString().trim();
-                //String input= textInputTempo.getText().toString();
-                //listener.insertItem(nome, position, input);
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();

@@ -1,7 +1,9 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -31,8 +33,9 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.t_freetime);
+        setContentView(R.layout.t_studio);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.hobbyorganize));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -41,6 +44,7 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
         inizio=findViewById(R.id.buttonstart);
+        inizio.setEnabled(false);
 
         //bottone +
         opendialog.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +100,9 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         long secondi=Long.parseLong(second);
         long time=ore*60+minuti;
         long input=(ore*3600+minuti*60+secondi)*1000;
-        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + ore + " : " + minuti + " : " + secondi , input));
+        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + time+ " minuti",input));
         mAdapter.notifyItemInserted(position);
+        inizio.setEnabled(true);
     }
 
 }
