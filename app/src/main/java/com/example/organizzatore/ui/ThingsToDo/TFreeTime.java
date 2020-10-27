@@ -100,8 +100,7 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         long secondi=Long.parseLong(second);
         long time=ore*60+minuti;
         long input=(ore*3600+minuti*60+secondi)*1000;
-        mExampleList.add(new ExampleItemOthers(nome, "Durata attività: " + time+ " minuti",input));
-        mAdapter.notifyItemInserted(position);
+        mExampleList.add(new ExampleItemOthers(nome, getString(R.string.durata_attivita) + ore + " : " + minuti + " : " + secondi , input)); //time        mAdapter.notifyItemInserted(position);
         inizio.setEnabled(true);
     }
 

@@ -106,7 +106,7 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
         long time=ore*60+minuti;
         int ripetizioni=Integer.parseInt(rep);
         long input=(ore*3600+minuti*60+secondi)*1000;
-        mExampleList.add(new ExampleItemSport(nome, "Durata attività: " + time+ " minuti", input,ripetizioni));
+        mExampleList.add(new ExampleItemSport(nome, getString(R.string.durata_attivita) + ore + " : " + minuti + " : " + secondi , input,ripetizioni)); //time
         mAdapter.notifyItemInserted(position);
         inizio.setEnabled(true);
     }

@@ -71,9 +71,8 @@ public class ExampleAdapterOthers extends RecyclerView.Adapter<ExampleAdapterOth
     @NonNull
     @Override
     public ExampleAdapterOthers.ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false); //todo è da cambiare example_item?
-        ExampleAdapterOthers.ExampleViewHolder
-                evh = new ExampleAdapterOthers.ExampleViewHolder(v,mListener);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
+        ExampleAdapterOthers.ExampleViewHolder evh = new ExampleAdapterOthers.ExampleViewHolder(v,mListener);
         return evh;
     }
     @Override

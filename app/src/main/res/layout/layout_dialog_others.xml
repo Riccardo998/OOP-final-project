@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/askact"
+        android:text="Che attività vuoi aggiungere?"
         android:textSize="18dp"
         android:textColor="@android:color/holo_red_dark"/>
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
-            android:text="@string/tempo_h_m_s"
+            android:text="Tempo (H:M:S)"
             android:textSize="18dp" />
 
         <NumberPicker
@@ -108,7 +108,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            android:text="@string/crea"
+            android:text="Crea"
             android:textColor="@android:color/holo_red_dark" />
 
         <Button
@@ -119,7 +119,7 @@
             android:layout_marginRight="0dp"
             android:background="@android:color/transparent"
             android:gravity="center"
-            android:text="@string/cancella"
+            android:text="Cancella"
             android:textColor="@android:color/holo_red_dark" />
     </LinearLayout>
 </LinearLayout>
