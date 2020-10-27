@@ -72,8 +72,7 @@ public class ExampleAdapterSport extends RecyclerView.Adapter<ExampleAdapterSpor
     @Override
     public ExampleAdapterSport.ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
-        ExampleAdapterSport.ExampleViewHolder
-                evh = new ExampleAdapterSport.ExampleViewHolder(v,mListener);
+        ExampleAdapterSport.ExampleViewHolder evh = new ExampleAdapterSport.ExampleViewHolder(v,mListener);
         return evh;
     }
     @Override

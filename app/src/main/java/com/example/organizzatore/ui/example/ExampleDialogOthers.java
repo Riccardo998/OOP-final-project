@@ -104,7 +104,7 @@ public class ExampleDialogOthers extends DialogFragment {
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
-                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty() && !(ore.equals("0") && minuti.equals("0") && secondi.equals("0")));
             }
 
             @Override
@@ -125,7 +125,7 @@ public class ExampleDialogOthers extends DialogFragment {
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
-                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty() && !(ore.equals("0") && minuti.equals("0") && secondi.equals("0")));
             }
 
             @Override
@@ -146,7 +146,7 @@ public class ExampleDialogOthers extends DialogFragment {
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
-                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty() && !(ore.equals("0") && minuti.equals("0") && secondi.equals("0")));
             }
 
             @Override
@@ -167,7 +167,7 @@ public class ExampleDialogOthers extends DialogFragment {
                 String ore= H.getText().toString().trim();
                 String minuti= Min.getText().toString().trim();
                 String secondi= S.getText().toString().trim();
-                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty());
+                positiveButton.setEnabled(!nome.isEmpty() && !ore.isEmpty() && !minuti.isEmpty() && !secondi.isEmpty() && !(ore.equals("0") && minuti.equals("0") && secondi.equals("0")));
             }
 
             @Override
