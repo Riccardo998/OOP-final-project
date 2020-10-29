@@ -51,4 +51,11 @@
     <string name="lingua">Lingua</string>
     <string name="darkmodeenable">Modalità notturna attivata</string>
     <string name="darkmodedisable">Modalità notturna disattivata</string>
+    <string name="exit"> Sei sicuro di voler uscire?</string>
+    <string name="usciretitolo"> Esci dall\'applicazione </string>
+    <string name="si"> Si </string>
+    <string name="attivitasvolta"> HAI TERMINATO LA TUA ATTIVITA\'</string>
+    <string name="tasksvolta"> HAI TERMINATO LA TASK N. </string>
+    <string name="attivitafinita"> Attività finita</string>
+    <string name="attivitafrase"> Hai finito la tua attività</string>
 </resources>

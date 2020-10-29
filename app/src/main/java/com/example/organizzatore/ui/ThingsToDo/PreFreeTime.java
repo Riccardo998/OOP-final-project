@@ -106,14 +106,18 @@ public class PreFreeTime extends Activity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                stopPlayer();
-                Toast.makeText(getApplication(), "HAI TERMINATO LA TUA ATTIVITA'", Toast.LENGTH_SHORT).show();
-                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, 0, pendingIntent);
-                Intent intent2 = new Intent(getApplicationContext(), TFreeTime.class);
-                startActivity(intent2);
+                if(mCountDownTimer!=null)
+                    mCountDownTimer.cancel();
+                if(player!=null)
+                    stopPlayer();
+                if(i==n-1){
+                    Toast.makeText(getApplication(), getString(R.string.attivitasvolta), Toast.LENGTH_SHORT).show();
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                    Intent intent = new Intent(getApplicationContext(), AlertReceiver.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, 0, pendingIntent);
+                }
+                finish();
             }
         });
 
@@ -127,6 +131,7 @@ public class PreFreeTime extends Activity {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
+
             @Override
             public void onFinish() {
                 play();
@@ -155,11 +160,10 @@ public class PreFreeTime extends Activity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void nextTimer(){
         mCountDownTimer.cancel();
-        mCountDownTimer.onFinish();
         i++;
         if(i==n-1)
             btn_next.setEnabled(false);
-        Toast.makeText(getApplication(), "HAI COMPLETATO LA TASK N. "+ i, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplication(), getString(R.string.tasksvolta)+ i, Toast.LENGTH_SHORT).show();
         String title = arrayList.get(i).getText1();
         long time = arrayList.get(i).getTime();
         setTime(time,title);
@@ -216,5 +220,4 @@ public class PreFreeTime extends Activity {
             player = null;
         }
     }
-
 }

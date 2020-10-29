@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.organizzatore.R;
+import com.example.organizzatore.ui.attivita.Studio;
 import com.example.organizzatore.ui.example.ExampleAdapterOthers;
 import com.example.organizzatore.ui.example.ExampleDialogOthers;
 import com.example.organizzatore.ui.example.ExampleItemOthers;

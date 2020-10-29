@@ -9,6 +9,8 @@ import android.provider.BaseColumns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.organizzatore.MainActivity;
 import com.example.organizzatore.data.contract.LavoroContract.LavoroEntry;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,8 +31,7 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
-    private AttivitaDbHelper
-            mDbHelper;
+    private AttivitaDbHelper mDbHelper;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -43,7 +44,6 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mDbHelper = new AttivitaDbHelper(this);
-        dbReadActivity(); //legge elementi dal db e mette in textview
 
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
@@ -95,13 +95,10 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
         mDbHelper = new AttivitaDbHelper(this);
         SQLiteDatabase
                 db = mDbHelper.getReadableDatabase();
-        String[] projection = {BaseColumns._ID,
-        };
-
+        String[] projection = {BaseColumns._ID,};
         String sortOrder = LavoroEntry._ID + " ASC";
 
-        Cursor
-                cursor = db.query(
+        Cursor cursor = db.query(
                 LavoroEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 null,              // The columns for the WHERE clause
@@ -117,19 +114,12 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
             while ((cursor.moveToNext() == true) && (cg != (position + 1))) {
                 currentID = cursor.getInt(idColumnIndex);
                 cg ++;
-
             }
             return currentID;
         } finally {
             cursor.close();
         }
-
-
     }
-
-
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void insertItem(String nome, int position) {
@@ -138,38 +128,5 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
         Toast.makeText(Lavoro.this, "inserito nuovo elemento", Toast.LENGTH_SHORT).show();
         mAdapter.swapCursor(mDbHelper.getAllItemsLavoro());
         mAdapter.notifyItemInserted(position);
-    }
-
-
-    /*PARTE PER DISPLAY ----DEBUG -----*/
-    public void dbReadActivity (){
-        mDbHelper = new AttivitaDbHelper(this);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        //specifico le colonne che userò dopo la query
-        String[] projection = {
-                BaseColumns._ID,
-                LavoroEntry.COLUMN_ATTIVITA
-                /* SportEntry.COLUMN_COSE_DA_FARE,
-                 SportEntry.COLUMN_REP,
-                 SportEntry.COLUMN_TIME*/
-        };
-
-// Filter results WHERE "title" = 'My Title'
-        //String selection = SportEntry.COLUMN_ATTIVITA + " = ?";
-        //String[] selectionArgs = { "My Title" };
-
-// How you want the results sorted in the resulting Cursor
-        String sortOrder = LavoroEntry._ID + " ASC";
-
-        Cursor cursor = db.query(
-                LavoroEntry.TABLE_NAME,   // The table to query
-                projection,             // The array of columns to return (pass null to get all)
-                null,              // The columns for the WHERE clause
-                null,          // The values for the WHERE clause
-                null,                   // don't group the rows
-                null,                   // don't filter by row groups
-                sortOrder               // The sort order
-        );
     }
 }

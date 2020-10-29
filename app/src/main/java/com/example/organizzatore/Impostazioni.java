@@ -116,5 +116,6 @@ public class Impostazioni extends PreferenceActivity {
     public void onBackPressed() {
         Intent intent= new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

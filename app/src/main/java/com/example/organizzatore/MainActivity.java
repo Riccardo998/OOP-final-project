@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 startActivity(new Intent(this, Impostazioni.class));
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -70,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setMessage("Sei sicuro di volere uscire?")
+        builder.setTitle(getString(R.string.usciretitolo))
+                .setMessage(getString(R.string.exit))
                 .setCancelable(false)
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.si), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();

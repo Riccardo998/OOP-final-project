@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.organizzatore">
 
     <application
@@ -80,6 +81,7 @@
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"
+            android:parentActivityName=".ui.ThingsToDo.TSport"
             />
 
         <activity
@@ -95,6 +97,7 @@
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"
+            android:parentActivityName=".ui.ThingsToDo.TStudio"
             />
         <activity
             android:name=".ui.ThingsToDo.TLavoro"
@@ -109,6 +112,7 @@
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"
+            android:parentActivityName=".ui.ThingsToDo.TLavoro"
             />
 
         <activity
@@ -124,6 +128,7 @@
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"
+            android:parentActivityName=".ui.ThingsToDo.TFreeTime"
             />
         <meta-data
             android:name="preloaded_fonts"

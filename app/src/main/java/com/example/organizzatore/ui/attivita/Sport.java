@@ -9,11 +9,14 @@ import android.provider.BaseColumns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.organizzatore.MainActivity;
 import com.example.organizzatore.data.adapter.SportDbAdapter;
 import com.example.organizzatore.ui.ThingsToDo.TSport;
 import com.example.organizzatore.ui.example.ExampleDialog;
@@ -29,8 +32,7 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
     public RecyclerView mRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
-    private AttivitaDbHelper
-            mDbHelper;
+    private AttivitaDbHelper mDbHelper;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -43,7 +45,6 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mDbHelper = new AttivitaDbHelper(this);
-        dbReadActivity(); //legge elementi dal db e mette in textview
 
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
@@ -52,7 +53,7 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
             @Override
             public void onClick(View v) {
                 ExampleDialog exampleDialog = new ExampleDialog();
-                exampleDialog.show(getFragmentManager(),"ExampleDialog");
+                exampleDialog.show(getFragmentManager(), "ExampleDialog");
                 ExampleDialog.position++;
             }
         });
@@ -70,91 +71,30 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
         mAdapter.setOnItemClickListener(new SportDbAdapter.OnItemClickListener() {
 
             //se si clicca l'item si attiva usa funzione
-            public void onItemClick(int position){
+            public void onItemClick(int position) {
                 startActivity(new Intent(getApplicationContext(), TSport.class));
-
             }
+
             @Override
-            public void onDeleteClick (int position) {
+            public void onDeleteClick(int position) {
                 int x = ReadID(position);
                 removeItem(x);
             }
         });
     }
 
-   public void removeItem(int position) {
-       mDbHelper.deleteSportEntry(position);
-       mAdapter.swapCursor(mDbHelper.getAllItemsSport());
-
-    }
-
-
-/*dovrebbe eprmettere di leggere il corretto id dell'item in una data posizione*/
-     public int ReadID(int position){
-         mDbHelper = new AttivitaDbHelper(this);
-         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-         String[] projection = {BaseColumns._ID,
-            };
-
-         String sortOrder = SportEntry._ID + " ASC";
-
-         Cursor cursor = db.query(
-                 SportEntry.TABLE_NAME,   // The table to query
-                 projection,             // The array of columns to return (pass null to get all)
-                 null,              // The columns for the WHERE clause
-                 null,          // The values for the WHERE clause
-                 null,                   // don't group the rows
-                 null,                   // don't filter by row groups
-                 sortOrder               // The sort order
-         );
-         try {
-         int idColumnIndex = cursor.getColumnIndex(SportEntry._ID);
-             int currentID  = 0;
-             int cg=0;
-         while ((cursor.moveToNext() == true) && (cg != (position + 1))) {
-             currentID = cursor.getInt(idColumnIndex);
-             cg ++;
-
-            }
-         return currentID;
-         } finally {
-        cursor.close();
-    }
-}
-
-
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void insertItem(String nome, int position) {
-        mDbHelper = new AttivitaDbHelper(this);
-        mDbHelper.insertSportDb(nome);
-        Toast.makeText(Sport.this, "inserito nuovo elemento", Toast.LENGTH_SHORT).show();
+    public void removeItem(int position) {
+        mDbHelper.deleteSportEntry(position);
         mAdapter.swapCursor(mDbHelper.getAllItemsSport());
-        mAdapter.notifyItemInserted(position);
     }
 
 
-/*PARTE PER DISPLAY ----DEBUG -----*/
-    public void dbReadActivity (){
+    /*dovrebbe eprmettere di leggere il corretto id dell'item in una data posizione*/
+    public int ReadID(int position) {
         mDbHelper = new AttivitaDbHelper(this);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        String[] projection = {BaseColumns._ID,};
 
-        //specifico le colonne che userò dopo la query
-        String[] projection = {
-                BaseColumns._ID,
-                SportEntry.COLUMN_ATTIVITA
-                /* SportEntry.COLUMN_COSE_DA_FARE,
-                 SportEntry.COLUMN_REP,
-                 SportEntry.COLUMN_TIME*/
-        };
-
-// Filter results WHERE "title" = 'My Title'
-        //String selection = SportEntry.COLUMN_ATTIVITA + " = ?";
-        //String[] selectionArgs = { "My Title" };
-
-// How you want the results sorted in the resulting Cursor
         String sortOrder = SportEntry._ID + " ASC";
 
         Cursor cursor = db.query(
@@ -166,5 +106,27 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
                 null,                   // don't filter by row groups
                 sortOrder               // The sort order
         );
+        try {
+            int idColumnIndex = cursor.getColumnIndex(SportEntry._ID);
+            int currentID = 0;
+            int cg = 0;
+            while ((cursor.moveToNext() == true) && (cg != (position + 1))) {
+                currentID = cursor.getInt(idColumnIndex);
+                cg++;
+
+            }
+            return currentID;
+        } finally {
+            cursor.close();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void insertItem(String nome, int position) {
+        mDbHelper = new AttivitaDbHelper(this);
+        mDbHelper.insertSportDb(nome);
+        Toast.makeText(Sport.this, "inserito nuovo elemento", Toast.LENGTH_SHORT).show();
+        mAdapter.swapCursor(mDbHelper.getAllItemsSport());
+        mAdapter.notifyItemInserted(position);
     }
 }

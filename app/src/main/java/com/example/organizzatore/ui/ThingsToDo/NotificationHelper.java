@@ -26,12 +26,12 @@ public class NotificationHelper extends ContextWrapper {
     public NotificationHelper(Context base){
         super(base);;
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            createchannel();
+            createChannel();
         }
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public void createchannel(){
+    public void createChannel(){
         NotificationChannel channel= new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_HIGH);
         channel.enableLights(true);
         channel.setLightColor(R.color.colorPrimary);
@@ -46,23 +46,24 @@ public class NotificationHelper extends ContextWrapper {
         return mManager;
     }
 
-    public NotificationCompat.Builder getChannelNotification(String title, String message){
-        Intent resultIntent = new Intent(this, MainActivity.class);//puoi cambiare
+    public NotificationCompat.Builder getChannelNotification(){
+        Intent resultIntent = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         resultIntent.putExtra("not", 1);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_CANCEL_CURRENT);
         return new NotificationCompat.Builder(this, channelID)
                 .setAutoCancel(true)
-                .setSubText("clicca sulla notifica")
+                .setSubText(getString(R.string.notifica))
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .setSmallIcon(R.drawable.smallicon)
-                .setContentTitle(title)
-                .setContentText(message)
+                .setContentTitle(getString(R.string.attivitafinita))
+                .setContentText(getString(R.string.attivitafrase))
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.unnamed))
                 .setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.unnamed))
                         .bigLargeIcon(null))
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
     }
 }

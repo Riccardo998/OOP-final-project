@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.organizzatore.R;
+import com.example.organizzatore.ui.attivita.FreeTime;
 import com.example.organizzatore.ui.example.ExampleAdapterOthers;
 import com.example.organizzatore.ui.example.ExampleDialogOthers;
 import com.example.organizzatore.ui.example.ExampleItemOthers;
@@ -103,5 +104,4 @@ public class TFreeTime extends AppCompatActivity implements ExampleDialogOthers.
         mExampleList.add(new ExampleItemOthers(nome, getString(R.string.durata_attivita) + ore + " : " + minuti + " : " + secondi , input)); //time        mAdapter.notifyItemInserted(position);
         inizio.setEnabled(true);
     }
-
 }

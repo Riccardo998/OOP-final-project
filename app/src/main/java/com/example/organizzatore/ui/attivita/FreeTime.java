@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.organizzatore.MainActivity;
 import com.example.organizzatore.R;
 import com.example.organizzatore.data.adapter.FreeTimeDbAdapter;
 import com.example.organizzatore.data.AttivitaDbHelper;
@@ -46,8 +47,6 @@ public class FreeTime extends AppCompatActivity implements ExampleDialog.Example
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mDbHelper = new AttivitaDbHelper(this);
-        dbReadActivity(); //legge elementi dal db e mette in textview
-
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
         //bottone +
@@ -75,7 +74,6 @@ public class FreeTime extends AppCompatActivity implements ExampleDialog.Example
             //se si clicca l'item si attiva usa funzione
             public void onItemClick(int position) {
                 startActivity(new Intent(getApplicationContext(), TFreeTime.class));
-
             }
 
             @Override
@@ -90,22 +88,18 @@ public class FreeTime extends AppCompatActivity implements ExampleDialog.Example
     public void removeItem(int position) {
         mDbHelper.deleteFreeTimeEntry(position);
         mAdapter.swapCursor(mDbHelper.getAllItemsFreeTime());
-
     }
 
 
     /*dovrebbe eprmettere di leggere il corretto id dell'item in una data posizione*/
     public int ReadID(int position) {
         mDbHelper = new AttivitaDbHelper(this);
-        SQLiteDatabase
-                db = mDbHelper.getReadableDatabase();
-        String[] projection = {BaseColumns._ID,
-        };
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        String[] projection = {BaseColumns._ID,};
 
         String sortOrder = FreeTimeEntry._ID + " ASC";
 
-        Cursor
-                cursor = db.query(
+        Cursor cursor = db.query(
                 FreeTimeEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 null,              // The columns for the WHERE clause
@@ -121,16 +115,12 @@ public class FreeTime extends AppCompatActivity implements ExampleDialog.Example
             while ((cursor.moveToNext() == true) && (cg != (position + 1))) {
                 currentID = cursor.getInt(idColumnIndex);
                 cg++;
-
             }
             return currentID;
         } finally {
             cursor.close();
         }
-
-
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void insertItem(String nome, int position) {
@@ -141,37 +131,5 @@ public class FreeTime extends AppCompatActivity implements ExampleDialog.Example
         mAdapter.notifyItemInserted(position);
     }
 
-
-    /*PARTE PER DISPLAY ----DEBUG -----*/
-    public void dbReadActivity() {
-        mDbHelper = new AttivitaDbHelper(this);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        //specifico le colonne che userò dopo la query
-        String[] projection = {
-                BaseColumns._ID,
-                FreeTimeEntry.COLUMN_ATTIVITA
-                /* SportEntry.COLUMN_COSE_DA_FARE,
-                 SportEntry.COLUMN_REP,
-                 SportEntry.COLUMN_TIME*/
-        };
-
-// Filter results WHERE "title" = 'My Title'
-        //String selection = SportEntry.COLUMN_ATTIVITA + " = ?";
-        //String[] selectionArgs = { "My Title" };
-
-// How you want the results sorted in the resulting Cursor
-        String sortOrder = FreeTimeEntry._ID + " ASC";
-
-        Cursor cursor = db.query(
-                FreeTimeEntry.TABLE_NAME,   // The table to query
-                projection,             // The array of columns to return (pass null to get all)
-                null,              // The columns for the WHERE clause
-                null,          // The values for the WHERE clause
-                null,                   // don't group the rows
-                null,                   // don't filter by row groups
-                sortOrder               // The sort order
-        );
-    }
 }
 

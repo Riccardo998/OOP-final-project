@@ -52,4 +52,11 @@
     <string name="lingua">Language</string>
     <string name="darkmodeenable">Dark mode enable</string>
     <string name="darkmodedisable">Dark mode disable</string>
+    <string name="exit"> Are you sure want to exit? </string>
+    <string name="usciretitolo"> Exit from application </string>
+    <string name="si"> Yes </string>
+    <string name="attivitasvolta"> ACTIVITY FINISH</string>
+    <string name="tasksvolta"> FINISH TASK N. </string>
+    <string name="attivitafinita"> Activity finish</string>
+    <string name="attivitafrase"> You have finish your activity</string>
 </resources>

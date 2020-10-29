@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.organizzatore.R;
+import com.example.organizzatore.ui.attivita.Sport;
 import com.example.organizzatore.ui.example.ExampleAdapterSport;
 import com.example.organizzatore.ui.example.ExampleDialogSport;
 import com.example.organizzatore.ui.example.ExampleItemOthers;
