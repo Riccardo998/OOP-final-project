@@ -111,6 +111,8 @@ public class TLavoro extends AppCompatActivity implements ExampleDialogOthers.Ex
     public void removeItem(int position) {
         mExampleList.remove(position);
         mAdapter.notifyItemRemoved(position);
+        if (mExampleList.isEmpty())
+            inizio.setEnabled(false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -118,9 +120,9 @@ public class TLavoro extends AppCompatActivity implements ExampleDialogOthers.Ex
         long ore=Long.parseLong(hour);
         long minuti=Long.parseLong(minute);
         long secondi=Long.parseLong(second);
-        long time=ore*60+minuti;
         long input=(ore*3600+minuti*60+secondi)*1000;
-        mExampleList.add(new ExampleItemOthers(nome, getString(R.string.durata_attivita) + ore + " : " + minuti + " : " + secondi , input)); //time        mAdapter.notifyItemInserted(position);
+        mExampleList.add(new ExampleItemOthers(nome, getString(R.string.durata_attivita) + ore + " : " + minuti + " : " + secondi , input));
+        mAdapter.notifyItemInserted(position);
         inizio.setEnabled(true);
     }
 

@@ -128,7 +128,7 @@ public class Studio extends AppCompatActivity implements ExampleDialog.ExampleDi
     public void insertItem(String nome, int position) {
         mDbHelper = new AttivitaDbHelper(this);
         mDbHelper.insertStudioDb(nome);
-        Toast.makeText(Studio.this, "inserito nuovo elemento", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Studio.this, getString(R.string.elemento), Toast.LENGTH_SHORT).show();
         mAdapter.swapCursor(mDbHelper.getAllItemsStudio());
         mAdapter.notifyItemInserted(position);
     }

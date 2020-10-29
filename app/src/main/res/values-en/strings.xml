@@ -59,4 +59,5 @@
     <string name="tasksvolta"> FINISH TASK N. </string>
     <string name="attivitafinita"> Activity finish</string>
     <string name="attivitafrase"> You have finish your activity</string>
+    <string name="elemento"> Insert new activity </string>
 </resources>

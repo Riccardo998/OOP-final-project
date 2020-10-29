@@ -125,7 +125,7 @@ public class Lavoro extends AppCompatActivity implements ExampleDialog.ExampleDi
     public void insertItem(String nome, int position) {
         mDbHelper = new AttivitaDbHelper(this);
         mDbHelper.insertLavoroDb(nome);
-        Toast.makeText(Lavoro.this, "inserito nuovo elemento", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Lavoro.this, getString(R.string.elemento), Toast.LENGTH_SHORT).show();
         mAdapter.swapCursor(mDbHelper.getAllItemsLavoro());
         mAdapter.notifyItemInserted(position);
     }

@@ -125,7 +125,7 @@ public class Sport extends AppCompatActivity implements ExampleDialog.ExampleDia
     public void insertItem(String nome, int position) {
         mDbHelper = new AttivitaDbHelper(this);
         mDbHelper.insertSportDb(nome);
-        Toast.makeText(Sport.this, "inserito nuovo elemento", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Sport.this, getString(R.string.elemento), Toast.LENGTH_SHORT).show();
         mAdapter.swapCursor(mDbHelper.getAllItemsSport());
         mAdapter.notifyItemInserted(position);
     }

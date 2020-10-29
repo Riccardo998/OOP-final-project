@@ -126,7 +126,7 @@ public class FreeTime extends AppCompatActivity implements ExampleDialog.Example
     public void insertItem(String nome, int position) {
         mDbHelper = new AttivitaDbHelper(this);
         mDbHelper.insertFreeTimeDb(nome);
-        Toast.makeText(FreeTime.this, "inserito nuovo elemento", Toast.LENGTH_SHORT).show();
+        Toast.makeText(FreeTime.this, getString(R.string.elemento), Toast.LENGTH_SHORT).show();
         mAdapter.swapCursor(mDbHelper.getAllItemsFreeTime());
         mAdapter.notifyItemInserted(position);
     }

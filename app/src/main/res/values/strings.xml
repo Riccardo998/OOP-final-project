@@ -58,4 +58,5 @@
     <string name="tasksvolta"> HAI TERMINATO LA TASK N. </string>
     <string name="attivitafinita"> Attività finita</string>
     <string name="attivitafrase"> Hai finito la tua attività</string>
+    <string name="elemento"> Inserita nuova attività </string>
 </resources>
