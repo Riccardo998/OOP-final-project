@@ -20,7 +20,6 @@ public class AttivitaDbHelper extends SQLiteOpenHelper {
 
 
 
-//todo CREA UN UNICO DB HELPER
     public AttivitaDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
