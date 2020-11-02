@@ -1,10 +1,8 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -16,10 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.organizzatore.R;
-import com.example.organizzatore.ui.attivita.Sport;
 import com.example.organizzatore.ui.example.ExampleAdapterSport;
 import com.example.organizzatore.ui.example.ExampleDialogSport;
-import com.example.organizzatore.ui.example.ExampleItemOthers;
 import com.example.organizzatore.ui.example.ExampleItemSport;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -37,7 +33,7 @@ public class TSport extends AppCompatActivity implements ExampleDialogSport.Exam
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.t_studio);
+        setContentView(R.layout.t_others);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.esercizi));
         setSupportActionBar(toolbar);

@@ -1,10 +1,8 @@
 package com.example.organizzatore.ui.ThingsToDo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.organizzatore.R;
-import com.example.organizzatore.ui.attivita.Studio;
 import com.example.organizzatore.ui.example.ExampleAdapterOthers;
 import com.example.organizzatore.ui.example.ExampleDialogOthers;
 import com.example.organizzatore.ui.example.ExampleItemOthers;
@@ -36,7 +33,7 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.t_studio);
+        setContentView(R.layout.t_others);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.esercizi));
         setSupportActionBar(toolbar);

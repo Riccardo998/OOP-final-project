@@ -6,4 +6,6 @@
     <color name="Tomato">#FF6347</color>
     <color name="yellow">#ffffb3</color>
     <color name="orange">#ff9933</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="black">#000000</color>
 </resources>

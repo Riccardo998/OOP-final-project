@@ -69,8 +69,10 @@
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="24dp"
-                android:background="#ff0000"
+                android:background="@drawable/rounded_corners"
+                android:textColor="@color/black"
                 android:text="@string/pause"
+                android:backgroundTint="#ff0000"
                 android:textSize="16sp"/>
 
             <Button
@@ -78,8 +80,9 @@
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="24dp"
-                android:background="#60CF44"
                 android:text="@string/start"
+                android:backgroundTint="#60CF44"
+                android:background="@drawable/rounded_corners"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:textSize="16sp"/>
@@ -88,19 +91,25 @@
         <Button
             android:id="@+id/btn_reset"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:text="@string/reset"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/silver"
+            android:background="@drawable/rounded_corners"
             android:textAlignment="center"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn_next"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="70dp"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="@color/silver"
+            android:textColor="@color/black"
             android:text="@string/next"
             android:textAlignment="center"
             android:textSize="16sp" />
@@ -108,9 +117,12 @@
         <Button
             android:id="@+id/btn_close"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="70dp"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="@color/silver"
+            android:textColor="@color/black"
             android:text="@string/chiudi"
             android:textAlignment="center"
             android:textSize="16sp" />

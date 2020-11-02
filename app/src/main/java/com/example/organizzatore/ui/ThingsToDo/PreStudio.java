@@ -5,29 +5,20 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.organizzatore.R;
-import com.example.organizzatore.ui.example.ExampleDialogOthers;
 import com.example.organizzatore.ui.example.ExampleItemOthers;
-import com.example.organizzatore.ui.example.ExampleItemSport;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -56,7 +47,7 @@ public class PreStudio extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pre_studio);
+        setContentView(R.layout.pre_others);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         this.setFinishOnTouchOutside(false);
         mNotificationHelper = new NotificationHelper(this);
