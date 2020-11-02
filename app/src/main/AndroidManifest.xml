@@ -25,21 +25,21 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".Impostazioni"
             android:label="@string/impostazioni"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".ui.attivita.Sport"
             android:label="@string/sportorganize"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
 
@@ -47,7 +47,7 @@
             android:name=".ui.attivita.Studio"
             android:label="@string/materie"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
 
@@ -55,14 +55,14 @@
             android:name=".ui.attivita.Lavoro"
             android:label="@string/attivitàlavoro"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
 
         <activity
             android:name=".ui.attivita.FreeTime"
             android:label="@string/hobby"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
@@ -71,13 +71,13 @@
             android:name=".ui.ThingsToDo.TSport"
             android:label="@string/esercizi"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.ui.attivita.Sport"
             />
 
         <activity
             android:name=".ui.ThingsToDo.PreSport"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"
@@ -87,13 +87,13 @@
         <activity
             android:name=".ui.ThingsToDo.TStudio"
             android:label="@string/esercizi"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.attivita.Studio"
             />
         <activity
             android:name=".ui.ThingsToDo.PreStudio"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"
@@ -102,13 +102,13 @@
         <activity
             android:name=".ui.ThingsToDo.TLavoro"
             android:label="@string/sottolavori"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.ui.attivita.Lavoro"
             />
         <activity
             android:name=".ui.ThingsToDo.PreLavoro"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"
@@ -119,12 +119,12 @@
             android:name=".ui.ThingsToDo.TFreeTime"
             android:label="@string/hobbyorganize"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.ui.attivita.FreeTime"
             />
         <activity
             android:name=".ui.ThingsToDo.PreFreeTime"
-            android:configChanges="uiMode"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.UserDialog"
             android:excludeFromRecents="true"

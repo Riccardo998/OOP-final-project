@@ -26,7 +26,7 @@ public class App extends Application {
     }
 
     public void loadLocale (){
-        SharedPreferences sp= getSharedPreferences("translate", MODE_PRIVATE);
+        SharedPreferences sp= getApplicationContext().getSharedPreferences("translate", MODE_PRIVATE);
         String language= sp.getString("la mia lingua", "");
         setLocale(language);
     }

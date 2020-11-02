@@ -4,129 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="vertical"
     tools:context=".ui.attivita.Studio">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="-26dp"
-        tools:layout_editor_absoluteY="338dp">
-
-
-        <TextView
-            android:id="@+id/attività"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/daccidentro"
-            android:layout_marginTop="8dp"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="16dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="-26dp"
+            tools:layout_editor_absoluteY="338dp">
 
-            <Chronometer
-                android:id="@+id/chronometer"
-                android:layout_width="156dp"
-                android:layout_height="50dp"
-                android:layout_gravity="left"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
-                android:format="00:00:00"
-                android:gravity="center_horizontal"
-                android:textSize="40sp"
-                android:layout_marginStart="8dp" />
 
             <TextView
-                android:id="@+id/cosedafare"
+                android:id="@+id/attività"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="@string/daccidentro"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <Chronometer
+                    android:id="@+id/chronometer"
+                    android:layout_width="156dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:format="00:00:00"
+                    android:gravity="center_horizontal"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/cosedafare"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/cosa_da_fare"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
                 android:gravity="center"
-                android:text="@string/cosa_da_fare"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
+                <!--pausa e start bottoni-->
+                <Button
+                    android:id="@+id/btn_pause"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/rounded_corners"
+                    android:backgroundTint="#ff0000"
+                    android:text="@string/pause"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="16dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_start"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_corners"
+                    android:backgroundTint="#60CF44"
+                    android:text="@string/start"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-            <!--pausa e start bottoni-->
             <Button
-                android:id="@+id/btn_pause"
+                android:id="@+id/btn_reset"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:layout_marginRight="24dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_corners"
+                android:backgroundTint="@color/silver"
+                android:text="@string/reset"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:text="@string/pause"
-                android:backgroundTint="#ff0000"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <Button
-                android:id="@+id/btn_start"
+                android:id="@+id/btn_next"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="24dp"
-                android:text="@string/start"
-                android:backgroundTint="#60CF44"
+                android:layout_gravity="center"
+                android:layout_marginTop="70dp"
                 android:background="@drawable/rounded_corners"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:textSize="16sp"/>
+                android:backgroundTint="@color/silver"
+                android:text="@string/next"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/rounded_corners"
+                android:backgroundTint="@color/silver"
+                android:text="@string/chiudi"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_reset"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="@string/reset"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/silver"
-            android:background="@drawable/rounded_corners"
-            android:textAlignment="center"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/rounded_corners"
-            android:backgroundTint="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/next"
-            android:textAlignment="center"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btn_close"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/rounded_corners"
-            android:backgroundTint="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/chiudi"
-            android:textAlignment="center"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
