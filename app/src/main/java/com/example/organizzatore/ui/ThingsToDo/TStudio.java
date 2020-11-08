@@ -27,6 +27,7 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
     public RecyclerView.LayoutManager mLayoutManager;
     public FloatingActionButton opendialog;
     public Button inizio;
+    public Button deleteAll;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -44,6 +45,7 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
         buildRecyclerView();
         opendialog = findViewById(R.id.floatingActionButton);
         inizio=findViewById(R.id.buttonstart);
+        deleteAll=findViewById(R.id.deleteAll);
         inizio.setEnabled(false);
 
         //bottone +
@@ -64,6 +66,13 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
                 startActivity(intent);
             }
         });
+
+        /*deleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeAll();
+            }
+        });*/
 
     }
 
@@ -103,4 +112,15 @@ public class TStudio extends AppCompatActivity implements ExampleDialogOthers.Ex
         mAdapter.notifyItemInserted(position);
         inizio.setEnabled(true);
     }
+
+    /*public void removeAll(){
+        int i=0;
+        while(!mExampleList.isEmpty()) {
+            mExampleList.remove(i);
+            mAdapter.notifyItemRemoved(i);
+            i++;
+        }
+        inizio.setEnabled(false);
+        deleteAll.setEnabled(false);
+    }*/
 }

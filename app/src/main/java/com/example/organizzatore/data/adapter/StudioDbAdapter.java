@@ -12,16 +12,14 @@ import com.example.organizzatore.R;
 import com.example.organizzatore.data.contract.StudioContract.StudioEntry;
 
 public class StudioDbAdapter extends RecyclerView.Adapter<StudioDbAdapter.StudioDbViewHolder> {
-    private final Context
-            context;
-    private Cursor
-            mCursor;
-    private StudioDbAdapter.OnItemClickListener
-            mListener;
+    private final Context context;
+    private Cursor mCursor;
+    private StudioDbAdapter.OnItemClickListener mListener;
 
     public interface OnItemClickListener {
         //quando clicco item oppure clicco delete
         void onItemClick(int position);
+
         void onDeleteClick(int position);
     }
 
@@ -29,18 +27,15 @@ public class StudioDbAdapter extends RecyclerView.Adapter<StudioDbAdapter.Studio
         mListener = listener;
     }
 
-    public StudioDbAdapter( Context context, Cursor cursor) {
+    public StudioDbAdapter(Context context, Cursor cursor) {
         mCursor = cursor;
         this.context = context;
     }
 
     public static class StudioDbViewHolder extends RecyclerView.ViewHolder {
         //nome, posizione e immagine delete
-        public TextView
-                mTextView1;
-        public ImageView
-                mDeleteImage;
-
+        public TextView mTextView1;
+        public ImageView mDeleteImage;
 
         public StudioDbViewHolder(View itemView, final StudioDbAdapter.OnItemClickListener listener) {
             super(itemView);
@@ -74,7 +69,6 @@ public class StudioDbAdapter extends RecyclerView.Adapter<StudioDbAdapter.Studio
             });
         }
     }
-
 
 
     @Override

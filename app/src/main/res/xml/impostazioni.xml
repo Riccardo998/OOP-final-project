@@ -3,11 +3,11 @@
     <PreferenceCategory
         android:title="@string/darkmode">
         <SwitchPreference
-            android:title="@string/day_night"
-            android:key="night"
             android:defaultValue="false"
+            android:key="night"
+            android:summaryOff="@string/darkmodedisable"
             android:summaryOn="@string/darkmodeenable"
-            android:summaryOff="@string/darkmodedisable" />
+            android:title="@string/day_night" />
     </PreferenceCategory>
 
    <PreferenceCategory
