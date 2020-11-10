@@ -1,15 +1,18 @@
 package com.example.organizzatore;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -17,6 +20,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.organizzatore.ui.example.ExampleDialogOthers;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
@@ -38,15 +42,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        SharedPreferences sp2 = getSharedPreferences("translate", 0);
-
-        final boolean language = sp2.getBoolean("translate", false);
-        if (language) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final boolean translate = sp.getBoolean("translate", false);
+        if (translate) {
             setLocale("en");
         } else {
             setLocale("it");
         }
-
     }
 
     public void setLocale (String language){
@@ -63,13 +65,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(new Intent(this, Impostazioni.class));
-                finish();
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

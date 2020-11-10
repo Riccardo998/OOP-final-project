@@ -1,29 +1,38 @@
 package com.example.organizzatore;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.organizzatore.ui.example.ExampleDialogOthers;
+
 import java.util.Locale;
 
 
-public class Impostazioni extends PreferenceActivity {
+public class Impostazioni extends PreferenceFragment {
+
+    private PreferenceListener listener;
+
+    public interface PreferenceListener{
+        void restartApp();
+        void setLocale(String language);
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocale();
-        loadSettings();
         addPreferencesFromResource(R.xml.impostazioni);
 
-        SharedPreferences sp = getSharedPreferences("night", 0);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         final SharedPreferences.Editor spEdit = sp.edit();
         SwitchPreference sw_night = (SwitchPreference) findPreference("night");
         sw_night.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -32,12 +41,12 @@ public class Impostazioni extends PreferenceActivity {
                 boolean yes = (boolean) newValue;
                 if (yes) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    getListView().setBackgroundColor(Color.parseColor("#382D2C"));
+                    listener.restartApp();
                     spEdit.putBoolean("night", true);
                     spEdit.apply();
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    getListView().setBackgroundColor(Color.parseColor("#ffffff"));
+                    listener.restartApp();
                     spEdit.putBoolean("night", false);
                     spEdit.apply();
                 }
@@ -45,7 +54,7 @@ public class Impostazioni extends PreferenceActivity {
             }
         });
 
-        SharedPreferences spt= getSharedPreferences("translate",0);
+        SharedPreferences spt= PreferenceManager.getDefaultSharedPreferences(getContext());
         final SharedPreferences.Editor sptEdit= spt.edit();
         SwitchPreference sw_translate= (SwitchPreference) findPreference( "translate");
         sw_translate.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -53,71 +62,30 @@ public class Impostazioni extends PreferenceActivity {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 boolean yes= (boolean) newValue;
                 if(yes){
-                    setLocale("en");
+                    listener.setLocale("en");
+                    listener.restartApp();
                     sptEdit.putBoolean("translate", true);
                     sptEdit.apply();
-                    startActivity(getIntent());
-                    finish();
-                    overridePendingTransition(0, 0);
                 }
                 else{
-                    setLocale("it");
+                    listener.setLocale("it");
+                    listener.restartApp();
                     sptEdit.putBoolean("translate", false);
                     sptEdit.apply();
-                    startActivity(getIntent());
-                    finish();
-                    overridePendingTransition(0, 0);
                 }
                 return true;
             }
         });
     }
 
-    public void loadSettings() {
-        SharedPreferences sp = getSharedPreferences("night", 0);
-
-        final boolean night = sp.getBoolean("night", false);
-        if (night) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            getListView().setBackgroundColor(Color.parseColor("#382D2C"));
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            getListView().setBackgroundColor(Color.parseColor("#ffffff"));
-        }
-
-        SharedPreferences sp2 = getSharedPreferences("translate", 0);
-
-        final boolean language = sp2.getBoolean("translate", false);
-        if (language) {
-            setLocale("en");
-        } else {
-            setLocale("it");
-        }
-
-    }
-
-    public void setLocale (String language){
-        Locale locale= new Locale(language);
-        Locale.setDefault(locale);
-        Configuration configuration= new Configuration();
-        configuration.locale=locale;
-        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
-        SharedPreferences.Editor editor= getSharedPreferences("translate", MODE_PRIVATE).edit();
-        editor.putString("la mia lingua", language);
-        editor.apply();
-    }
-
-    public void loadLocale (){
-        SharedPreferences sp= getSharedPreferences("translate", MODE_PRIVATE);
-        String language= sp.getString("la mia lingua", "");
-        setLocale(language);
-    }
-
-
     @Override
-    public void onBackPressed() {
-        Intent intent= new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish();
+    public void onAttach (Context context){
+        super.onAttach(context);
+        try {
+            listener = (PreferenceListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+                    "must implement ExampleDialogListener");
+        }
     }
 }

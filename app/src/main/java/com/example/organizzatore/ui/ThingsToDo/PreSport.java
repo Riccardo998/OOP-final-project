@@ -36,16 +36,18 @@ public class PreSport extends Activity {
     private Button btn_chiudi;
     private TextView chronometer;
     private TextView attivita;
+    private TextView ripetizioni;
 
     private CountDownTimer mCountDownTimer;
     private long mStartTimeInMillis;
     private long mTimeLeftInMillis;
-    private long mEndTime;
     private int i=0;
 
     private ArrayList<ExampleItemSport> arrayList;
     private int n;
-
+    private long data;
+    private String title;
+    private int rep;
     private MediaPlayer player;
 
     @Override
@@ -57,9 +59,9 @@ public class PreSport extends Activity {
         mNotificationHelper = new NotificationHelper(this);
         arrayList=(ArrayList<ExampleItemSport>) getIntent().getSerializableExtra("list");
 
-        final long data = arrayList.get(i).getTime();
-        final String title= arrayList.get(i).getText1();
-        final int rep= arrayList.get(i).getRep();
+        data = arrayList.get(i).getTime();
+        title= arrayList.get(i).getText1();
+        rep= arrayList.get(i).getRep();
         n = arrayList.size();
 
         chronometer=findViewById(R.id.chronometer);
@@ -124,7 +126,6 @@ public class PreSport extends Activity {
     }
 
     private void startTimer() {
-        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -136,7 +137,6 @@ public class PreSport extends Activity {
             public void onFinish() {
                     if(i == n - 1){
                         btn_next.setEnabled(false);
-                        btn_reset.setEnabled(false);
                         btn_pause.setEnabled(false);
                         btn_start.setEnabled(false);
                     }
@@ -165,10 +165,10 @@ public class PreSport extends Activity {
         if(i==n-1)
             btn_next.setEnabled(false);
         Toast.makeText(getApplication(), getString(R.string.tasksvolta) + i, Toast.LENGTH_SHORT).show();
-        String title = arrayList.get(i).getText1();
-        long time = arrayList.get(i).getTime();
-        int rep= arrayList.get(i).getRep();
-        setTime(time,title,rep);
+        title = arrayList.get(i).getText1();
+        data = arrayList.get(i).getTime();
+        rep= arrayList.get(i).getRep();
+        setTime(data,title,rep);
         btn_start.setEnabled(true);
     }
 
@@ -195,9 +195,9 @@ public class PreSport extends Activity {
         chronometer.setText(timeLeftFormatted);
     }
 
-    public void setTime(long milliseconds, String title, int ripetizioni) {
-        TextView rep=findViewById(R.id.rep);
-        rep.setText(""+ ripetizioni);
+    public void setTime(long milliseconds, String title, int rep) {
+        ripetizioni=findViewById(R.id.rep);
+        ripetizioni.setText(""+ rep);
         TextView textView=findViewById(R.id.cosedafare);
         textView.setText(title);
         mStartTimeInMillis = milliseconds;
@@ -207,7 +207,7 @@ public class PreSport extends Activity {
 
     public void play() {
         if (player == null) {
-            player = MediaPlayer.create(this, R.raw.song);
+            player = MediaPlayer.create(this, R.raw.alarm);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -217,6 +217,19 @@ public class PreSport extends Activity {
         }
         player.start();
     }
+
+    /*public void play2() {
+        if (player == null) {
+            player = MediaPlayer.create(this, R.raw.whistle);
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+        player.start();
+    }*/
 
     private void stopPlayer() {
         if (player != null) {

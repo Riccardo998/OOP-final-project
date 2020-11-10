@@ -2,8 +2,12 @@ package com.example.organizzatore;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatDelegate;
+
+import java.util.Locale;
 
 public class App extends Application {
 
@@ -14,7 +18,7 @@ public class App extends Application {
     }
 
     public void loadSettings() {
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("night", 0);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         final boolean night = sp.getBoolean("night", false);
         if (night) {
@@ -22,6 +26,5 @@ public class App extends Application {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
     }
 }

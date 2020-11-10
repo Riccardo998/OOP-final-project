@@ -29,7 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".Impostazioni"
+            android:name=".SettingsActivity"
             android:label="@string/impostazioni"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden|screenSize"

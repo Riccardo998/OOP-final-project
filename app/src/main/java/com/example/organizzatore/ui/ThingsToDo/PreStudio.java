@@ -199,7 +199,7 @@ public class PreStudio extends Activity {
 
     public void play() {
         if (player == null) {
-            player = MediaPlayer.create(this, R.raw.song);
+            player = MediaPlayer.create(this, R.raw.alarm);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
