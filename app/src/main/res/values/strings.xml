@@ -60,4 +60,8 @@
     <string name="attivitafrase"> Hai finito la tua attività</string>
     <string name="elemento"> Inserita nuova attività </string>
     <string name="deleteAll"> Cancella lista </string>
+    <string name="comefunziona">Come funziona?</string>
+    <string name="choose">Scegli quale tipo di attività svolgere tra le quattro disponibili</string>
+    <string name="attivitadacreare"> Crea la tua attività da svolgere </string>
+    <string name="dividiattivita"> Dividi la tua attività da svolgere in sotto-attività </string>
 </resources>

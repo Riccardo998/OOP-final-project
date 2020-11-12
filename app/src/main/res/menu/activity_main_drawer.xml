@@ -4,7 +4,6 @@
     tools:showIn="navigation_view">
     <item android:title="@string/funzionalita">
         <menu>
-
             <item
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_baseline_home_24"
@@ -13,6 +12,10 @@
                 android:id="@+id/nav_cronometro"
                 android:icon="@drawable/ic_baseline_alarm_24"
                 android:title="@string/cronometro" />
+            <item
+                android:id="@+id/nav_slide"
+                android:icon="@drawable/ic_baseline_help_outline_24"
+                android:title="@string/comefunziona"/>
         </menu>
     </item>
 </menu>

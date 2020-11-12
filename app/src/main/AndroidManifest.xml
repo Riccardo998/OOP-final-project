@@ -79,7 +79,7 @@
             android:name=".ui.ThingsToDo.PreSport"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
-            android:theme="@style/Theme.UserDialog"
+            android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"
             android:parentActivityName=".ui.ThingsToDo.TSport"
             />
@@ -95,7 +95,7 @@
             android:name=".ui.ThingsToDo.PreStudio"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
-            android:theme="@style/Theme.UserDialog"
+            android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"
             android:parentActivityName=".ui.ThingsToDo.TStudio"
             />
@@ -110,7 +110,7 @@
             android:name=".ui.ThingsToDo.PreLavoro"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
-            android:theme="@style/Theme.UserDialog"
+            android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"
             android:parentActivityName=".ui.ThingsToDo.TLavoro"
             />
@@ -126,10 +126,11 @@
             android:name=".ui.ThingsToDo.PreFreeTime"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor"
-            android:theme="@style/Theme.UserDialog"
+            android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"
             android:parentActivityName=".ui.ThingsToDo.TFreeTime"
             />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

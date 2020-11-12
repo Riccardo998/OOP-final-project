@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.organizzatore.R;
 import com.example.organizzatore.ui.example.ExampleItemOthers;
@@ -23,7 +24,7 @@ import com.example.organizzatore.ui.example.ExampleItemOthers;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class PreLavoro extends Activity {
+public class PreLavoro extends AppCompatActivity {
     private  NotificationHelper mNotificationHelper;
     private Button btn_start;
     private Button btn_pause;

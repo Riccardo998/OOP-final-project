@@ -61,4 +61,8 @@
     <string name="attivitafrase"> You have finish your activity</string>
     <string name="elemento"> Insert new activity </string>
     <string name="deleteAll"> Delete list </string>
+    <string name="comefunziona">How does it work?</string>
+    <string name="choose">Choose which type of activity you want to carry out between this four</string>
+    <string name="attivitadacreare"> Make your activity to do </string>
+    <string name="dividiattivita"> Divide your activity in sub-activity</string>
 </resources>

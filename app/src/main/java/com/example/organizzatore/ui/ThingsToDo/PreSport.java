@@ -27,7 +27,7 @@ import com.example.organizzatore.ui.example.ExampleItemSport;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class PreSport extends Activity {
+public class PreSport extends AppCompatActivity {
     private NotificationHelper mNotificationHelper;
     private Button btn_start;
     private Button btn_pause;
