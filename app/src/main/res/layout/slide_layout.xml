@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@color/yellow">
 
     <ImageView
         android:id="@+id/slide_image"
@@ -26,8 +26,8 @@
         android:fontFamily="@font/coming_soon"
         android:gravity="center"
         android:text="@string/choose"
-        android:textColor="#FFFFFF"
         android:textSize="30sp"
+        android:textColor="@color/black_or_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

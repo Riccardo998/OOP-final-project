@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.Navigation;
 
 import com.example.organizzatore.R;
 import com.example.organizzatore.ui.attivita.FreeTime;
@@ -26,7 +27,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         /*rendo cliccabili gli elementi della cardview*/
         CardView cardSport = root.findViewById(R.id.sport);
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment {
 
         cardLavoro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Lavoro.class));
+                Navigation.findNavController(root).navigate(R.id.action_nav_home_to_lavoro2);
             }
         });
 

@@ -26,14 +26,14 @@
                 android:layout_marginRight="16dp"
                 card_view:cardCornerRadius="16dp">
 
-                -->
-
-                <ImageView
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/img_sport"
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/Tomato"
-                    android:src="@mipmap/img_workout" />
+                    android:layout_width="match_parent"
+                    card_view:lottie_rawRes="@raw/cycle"
+                    card_view:lottie_autoPlay="true"
+                    card_view:lottie_loop="true"
+                    android:background="#3490dc"/>
 
                 <TextView
                     android:layout_width="match_parent"
