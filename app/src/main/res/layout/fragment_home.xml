@@ -33,7 +33,7 @@
                     card_view:lottie_rawRes="@raw/cycle"
                     card_view:lottie_autoPlay="true"
                     card_view:lottie_loop="true"
-                    android:background="#3490dc"/>
+                    android:background="@color/sky"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                     android:layout_margin="8dp"
                     android:gravity="left"
                     android:text="@string/sport"
-                    android:textColor="#000000"
+                    android:textColor="@color/black_or_white"
                     android:textSize="24dp" />
 
 
@@ -61,12 +61,14 @@
                 android:layout_marginRight="16dp"
                 card_view:cardCornerRadius="16dp">
 
-                <ImageView
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/img_study"
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/Tomato"
-                    android:src="@mipmap/img_study" />
+                    android:layout_width="match_parent"
+                    card_view:lottie_rawRes="@raw/study"
+                    card_view:lottie_autoPlay="true"
+                    card_view:lottie_loop="true"
+                    android:background="@color/green"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -78,7 +80,7 @@
                     android:layout_margin="8dp"
                     android:gravity="left"
                     android:text="@string/studio"
-                    android:textColor="#000000"
+                    android:textColor="@color/black_or_white"
                     android:textSize="24dp" />
             </androidx.cardview.widget.CardView>
 
@@ -92,12 +94,14 @@
                 android:layout_marginRight="16dp"
                 card_view:cardCornerRadius="16dp">
 
-                <ImageView
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/img_work"
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/Tomato"
-                    android:src="@mipmap/img_work" />
+                    android:layout_width="match_parent"
+                    card_view:lottie_rawRes="@raw/work"
+                    card_view:lottie_autoPlay="true"
+                    card_view:lottie_loop="true"
+                    android:background="@color/lavender"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -109,11 +113,11 @@
                     android:layout_margin="8dp"
                     android:gravity="left"
                     android:text="@string/lavoro"
-                    android:textColor="#000000"
+                    android:textColor="@color/black_or_white"
                     android:textSize="24dp" />
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <androidx.cardview.widget.CardView
                 android:id="@+id/freetime"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -122,15 +126,17 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                card_view:cardCornerRadius="16dp"
-                card_view:cardElevation="3dp">
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp">
 
-                <ImageView
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/img_freetime"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/Tomato"
-                    android:src="@mipmap/img_freetime" />
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/play" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -142,7 +148,7 @@
                     android:layout_margin="8dp"
                     android:gravity="left"
                     android:text="@string/freetime"
-                    android:textColor="#000000"
+                    android:textColor="@color/black_or_white"
                     android:textSize="24dp" />
 
             </androidx.cardview.widget.CardView>

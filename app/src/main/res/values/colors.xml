@@ -9,4 +9,7 @@
     <color name="silver">#C0C0C0</color>
     <color name="black">#000000</color>
     <color name="black_or_white">#000000</color>
+    <color name="sky"> #3490dc </color>
+    <color name="green"> #38c172</color>
+    <color name="lavender"> #e6e6fa </color>
 </resources>
