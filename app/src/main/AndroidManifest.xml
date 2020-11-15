@@ -39,7 +39,7 @@
             android:name=".ui.attivita.Sport"
             android:label="@string/sportorganize"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
 
@@ -47,7 +47,7 @@
             android:name=".ui.attivita.Studio"
             android:label="@string/materie"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
 
@@ -55,14 +55,14 @@
             android:name=".ui.attivita.Lavoro"
             android:label="@string/attivitàlavoro"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
 
         <activity
             android:name=".ui.attivita.FreeTime"
             android:label="@string/hobby"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.example.organizzatore.MainActivity"
             />
@@ -77,7 +77,7 @@
 
         <activity
             android:name=".ui.ThingsToDo.PreSport"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"
@@ -93,7 +93,7 @@
             />
         <activity
             android:name=".ui.ThingsToDo.PreStudio"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"
@@ -108,7 +108,7 @@
             />
         <activity
             android:name=".ui.ThingsToDo.PreLavoro"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"
@@ -124,7 +124,7 @@
             />
         <activity
             android:name=".ui.ThingsToDo.PreFreeTime"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/AppTheme.UserDialog"
             android:excludeFromRecents="true"

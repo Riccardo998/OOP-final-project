@@ -42,6 +42,7 @@ public class PreLavoro extends AppCompatActivity {
 
     private ArrayList<ExampleItemOthers> arrayList;
     private int n;
+    private boolean mTimerRunning;
 
     private MediaPlayer player;
 
@@ -138,8 +139,10 @@ public class PreLavoro extends AppCompatActivity {
                     btn_pause.setEnabled(false);
                     btn_start.setEnabled(false);
                 }
+                mTimerRunning = false;
             }
         }.start();
+        mTimerRunning = true;
         btn_pause.setEnabled(true);
         btn_reset.setEnabled(true);
         if(i!=n-1)
@@ -150,6 +153,7 @@ public class PreLavoro extends AppCompatActivity {
     }
 
     private void pauseTimer() {
+        mTimerRunning = false;
         mCountDownTimer.cancel();
         btn_start.setEnabled(true);
     }
@@ -168,6 +172,7 @@ public class PreLavoro extends AppCompatActivity {
     }
 
     private void resetTimer() {
+        mTimerRunning = false;
         stopPlayer();
         mCountDownTimer.cancel();
         mTimeLeftInMillis = mStartTimeInMillis;
@@ -215,6 +220,26 @@ public class PreLavoro extends AppCompatActivity {
         if (player != null) {
             player.release();
             player = null;
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong("millisLeft", mTimeLeftInMillis);
+        outState.putBoolean("timerRunning", mTimerRunning);
+        outState.putLong("endTime", mEndTime);
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
+        mTimerRunning = savedInstanceState.getBoolean("timerRunning");
+        updateCountDownText();
+        if (mTimerRunning) {
+            mEndTime = savedInstanceState.getLong("endTime");
+            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+            startTimer();
         }
     }
 }
