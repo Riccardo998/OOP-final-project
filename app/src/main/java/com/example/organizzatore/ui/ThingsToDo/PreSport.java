@@ -53,6 +53,7 @@ public class PreSport extends AppCompatActivity {
     private MediaPlayer player;
     private long mEndTime;
     private boolean mTimerRunning;
+    private boolean playOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,6 +223,7 @@ public class PreSport extends AppCompatActivity {
                     stopPlayer();
                 }
             });
+            playOn=true;
         }
         player.start();
     }
@@ -235,6 +237,7 @@ public class PreSport extends AppCompatActivity {
                     stopPlayer();
                 }
             });
+            playOn=true;
         }
         player.start();
     }*/
@@ -243,6 +246,7 @@ public class PreSport extends AppCompatActivity {
         if (player != null) {
             player.release();
             player = null;
+            playOn=false;
         }
     }
 
@@ -252,18 +256,24 @@ public class PreSport extends AppCompatActivity {
         outState.putLong("millisLeft", mTimeLeftInMillis);
         outState.putBoolean("timerRunning", mTimerRunning);
         outState.putLong("endTime", mEndTime);
+        outState.putBoolean("play", playOn);
+        stopPlayer();
     }
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
         mTimerRunning = savedInstanceState.getBoolean("timerRunning");
+        playOn=savedInstanceState.getBoolean("play");
         updateCountDownText();
         if (mTimerRunning) {
             mEndTime = savedInstanceState.getLong("endTime");
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
             startTimer();
         }
+        if(playOn)
+            play();
     }
 }
 

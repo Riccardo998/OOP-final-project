@@ -45,6 +45,7 @@ public class PreStudio extends AppCompatActivity {
     private boolean mTimerRunning;
 
     private MediaPlayer player;
+    private boolean playOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,8 @@ public class PreStudio extends AppCompatActivity {
         final String title= arrayList.get(i).getText1();
 
         n = arrayList.size();
+
+        playOn=false;
 
         chronometer=findViewById(R.id.chronometer);
         btn_pause=findViewById(R.id.btn_pause);
@@ -212,6 +215,7 @@ public class PreStudio extends AppCompatActivity {
                     stopPlayer();
                 }
             });
+            playOn=true;
         }
         player.start();
     }
@@ -220,6 +224,7 @@ public class PreStudio extends AppCompatActivity {
         if (player != null) {
             player.release();
             player = null;
+            playOn=false;
         }
     }
 
@@ -229,17 +234,22 @@ public class PreStudio extends AppCompatActivity {
         outState.putLong("millisLeft", mTimeLeftInMillis);
         outState.putBoolean("timerRunning", mTimerRunning);
         outState.putLong("endTime", mEndTime);
+        outState.putBoolean("play", playOn);
+        stopPlayer();
     }
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
         mTimerRunning = savedInstanceState.getBoolean("timerRunning");
+        playOn=savedInstanceState.getBoolean("play");
         updateCountDownText();
         if (mTimerRunning) {
             mEndTime = savedInstanceState.getLong("endTime");
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
             startTimer();
         }
+        if(playOn)
+            play();
     }
 }

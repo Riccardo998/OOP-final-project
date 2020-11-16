@@ -45,10 +45,8 @@ public class SettingsActivity extends AppCompatActivity implements Impostazioni.
 
     @Override
     public void restartApp() {
-        Intent i=new Intent(this, SettingsActivity.class);
-        startActivity(i);
-        finish();
-        overridePendingTransition(0,0);
+        getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
+        recreate();
     }
 
     @Override

@@ -42,9 +42,10 @@ public class PreFreeTime extends AppCompatActivity {
 
     private ArrayList<ExampleItemOthers> arrayList;
     private int n;
+    private boolean mTimerRunning;
 
     private MediaPlayer player;
-    private boolean mTimerRunning;
+    private boolean playOn;
 
 
     @Override
@@ -213,6 +214,7 @@ public class PreFreeTime extends AppCompatActivity {
                     stopPlayer();
                 }
             });
+            playOn=true;
         }
         player.start();
     }
@@ -221,6 +223,7 @@ public class PreFreeTime extends AppCompatActivity {
         if (player != null) {
             player.release();
             player = null;
+            playOn=false;
         }
     }
 
@@ -230,17 +233,23 @@ public class PreFreeTime extends AppCompatActivity {
         outState.putLong("millisLeft", mTimeLeftInMillis);
         outState.putBoolean("timerRunning", mTimerRunning);
         outState.putLong("endTime", mEndTime);
+        outState.putBoolean("play", playOn);
+        stopPlayer();
     }
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
         mTimerRunning = savedInstanceState.getBoolean("timerRunning");
+        playOn=savedInstanceState.getBoolean("play");
         updateCountDownText();
         if (mTimerRunning) {
             mEndTime = savedInstanceState.getLong("endTime");
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
             startTimer();
         }
+        if(playOn)
+            play();
     }
 }
